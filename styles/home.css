@@ -1,0 +1,349 @@
+main{
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 80vh;
+}
+
+
+
+/* Heading */
+.heading {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.heading h1 {
+    color: white;
+    font-size: 2rem;
+}
+
+.heading .fa-plus{
+    background-color: white;
+    padding: 3px 6px;
+    border-radius: 2px;
+    height: fit-content;
+    cursor: pointer;
+}
+
+/* Sub-Heading */
+
+.sub_heading{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.sub_heading select{
+    background-color: #EDEDED;
+    color: #424242;
+    text-align: center;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+
+/* Bouton Toggle */
+
+.row_type_done{
+    font-size: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+
+.row_type_done input {
+	display : none;
+}
+
+.row_type_done div label {
+	position: relative;
+	cursor: pointer;
+	display :block;
+	width: 40px;
+	height: 20px;
+	background: white;
+	border-radius: 50px;
+	transition: 100ms linear;
+}
+
+.row_type_done div label:before {
+	position: absolute;
+	top: 50%;
+	left: 2px;
+	transform: translateY(-50%);
+	content: "";
+	display: block;
+	width: 15px;
+	height: 15px;
+	background: #53256E;
+	border-radius: 50%;
+	transition: left 100ms linear;
+}
+
+.row_type_done div input:checked + label {
+	background: black;
+}
+
+.row_type_done div input:checked + label:before {
+	left: 23px;
+}
+
+
+/* Date */
+
+#currentDate{
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+
+/* Main Content */
+
+.main_content{
+    background-color: white;
+    border-radius: 15px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+ul {
+    display: flex;
+    padding: 20px 30px;
+    flex-direction: column;
+    gap: 30px;
+    height: 100%;
+}
+
+ul li{
+    display: flex;
+    gap: 20px;
+}
+
+/* First Column */
+
+ul li .firstColumn{
+    width: 80%;
+}
+
+ul li .title{
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+ul li .matiere{
+    font-size: 0.8rem;
+    color: #A6A6A6;
+}
+
+
+/* Second Column */
+
+ul li .secondColumn{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul li .date{
+    color: red;
+}
+
+ul li .fa-circle-info{
+    color: #53256E;
+}
+
+/* Done */
+
+ul li.done {
+    opacity: 0.5;
+    display: none;
+}
+
+ul li.done .title{
+    text-decoration:line-through;
+}
+
+ul li.done .date{
+    color: green;
+}
+
+ul li.done .firstColumn{
+    text-align: center;
+}
+
+
+
+/*** Add Devoir ***/
+
+
+.addDevoir{
+    position: absolute;
+    z-index: 10;
+    backdrop-filter: blur(8px) brightness(0.8);
+    min-height: 100vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: 0.3s ease-in forwards fadeIn;
+}
+
+@keyframes fadeIn {
+    to{
+        opacity: 1;
+    }
+}
+
+.addDevoir form{
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px 40px;
+    width: 90%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.addDevoir h1{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.addDevoir .fa-x{
+    position: absolute;
+    right: 10%;
+}
+
+.addDevoir span{
+    color: red;
+}
+
+.addDevoir fieldset{
+    border: none;
+}
+
+
+.addDevoir select{
+    background-color: #53256E;
+    color: white;
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+}
+
+.addDevoir input, .addDevoir textarea{
+    font-family: 'Inter', sans-serif;
+    padding: 6px;
+    border: #cfcfcf 1.2px solid;
+    border-radius: 5px;
+}
+
+
+.addDevoir input[type="number"]{
+    width: 80px;
+}
+
+.addDevoir input[type="file"]{
+    border: none;
+}
+
+.coefLabel{
+    margin-left: 20px;
+}
+
+.addDevoir input[type="submit"]{
+    width: fit-content;
+    margin: auto;
+    font-size: 1.2rem;
+    padding: 6px 16px;
+    color: white;
+    background-color: #53256E;
+}
+
+.addDevoir .fa-x{
+    cursor: pointer;
+}
+
+
+
+.infoDevoir{
+    position: absolute;
+    z-index: 10;
+    backdrop-filter: blur(10px) brightness(0.8);
+    min-height: 100vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: none;
+    justify-content: center;
+}
+
+.infoDevoir section{
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: fit-content;
+    margin-top: -100%;
+    width: 90%;
+    animation: dropdown 0.3s ease-in forwards;
+}
+
+@keyframes dropdown {
+    to {
+        margin-top: 10%;
+    }
+}
+
+.infoDevoir h1{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.infoDevoir .fa-x{
+    position: absolute;
+    right: 10%;
+}
+
+.infoDevoir .fa-pen-to-square{
+    position: absolute;
+    left: 10%;
+}
+
+
+.infoDevoir .row{
+    display: flex;
+    gap: 30px;
+    align-items: baseline;
+}
+
+.infoDevoir span{
+    color: #A6A6A6;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+
+
+
+/* User styles */
+
+
+.user .btnAddDevoir, .user .btnModifDev{
+    display: none !important;
+}

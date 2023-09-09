@@ -1,0 +1,84 @@
+
+
+
+main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+form{
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px 60px;
+    width: 90%;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+
+form fieldset{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    border: none;
+    width: 100%;
+}
+
+
+form fieldset div{
+    position: relative;
+    width: 100%;
+}
+
+
+form fieldset div input, form select{
+    border: none;
+    background-color: #E7E7E7;
+    padding: 15px 30px;
+    width: 100%;
+    border-radius: 25px;
+    color: #A5A5A5;
+}
+
+
+form fieldset div i {
+    position: absolute;
+    top: 50%;
+    transform: translate(-20px, -50%);
+    left: 30px;
+    color: #53256E;
+    font-size: 0.8rem;
+}
+
+
+form input[type="submit"]{
+    color: white;
+    background-color: #53256E;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+form p {
+    color: #53256E;
+    cursor: pointer;
+}
+
+form p:hover {
+text-decoration: underline;
+}
+
+#formInscription{
+    display: none;
+}
+
+
