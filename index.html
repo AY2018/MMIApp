@@ -10,7 +10,9 @@
 
     <title>MMI Devoirs - Log In</title>
 </head>
-<body class="user">
+
+
+<body>
 
     <header>
         <figure>
@@ -25,15 +27,7 @@
         </section>
 
         <section class="sub_heading">
-            <select name="" id="">
-                <option value="" disabled selected>Trier par</option>
-                <option value="">Importance</option>
-                <option value="">Communication</option>
-                <option value="">Créa. num</option>
-                <option value="">Dev. web</option>
-                <option value="">Autres</option>
-            </select>
-
+            
             <div class="row_type_done">
                 <h2>Afficher devoirs finis</h2>
                 <div>
@@ -85,7 +79,6 @@
                         <p class="matiere">MM2R03 Ergonomie & Accessibilité</p>
                     </div>
                     <div class="secondColumn">
-                        
                         <p class="date">3/10</p>
                         <i class="fa-solid fa-circle-info"></i>
                     </div>
@@ -134,6 +127,7 @@
         </article>
     </main>
 
+    <!------------ Ajouter formulaire  ---------->
     <article class="addDevoir" id="addForm">
         <form action="" class="addDevoir_form">
             <i class="fa-solid fa-x" onclick="closeAdd()"></i>
@@ -189,7 +183,7 @@
         </form>
     </article>
 
-
+    <!------------ Modifier formulaire  ---------->
     <article class="addDevoir" id="modifForm">
         <form action="" class="addDevoir_form">
             <i class="fa-solid fa-x" onclick="closeModif()"></i>
@@ -241,7 +235,7 @@
                 <input type="number" class="coefLabel">
             </fieldset>
             
-            <input type="submit" value="Ajouter">
+            <input type="submit" value="Modifier">
         </form>
     </article>
 
@@ -271,6 +265,7 @@
         </section>
        
     </article>
+
     <script src="./js/main.js"></script>
 </body>
 </html>
