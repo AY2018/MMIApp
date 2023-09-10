@@ -27,15 +27,15 @@ if ($_POST["inscriptionSubmit"]) {
                     if (mysqli_num_rows($result) === 0) {
                         if (mysqli_num_rows($result2) === 0) {
                             // Insertion des données dans la base de données
-                            $sql3 = "INSERT INTO `etudiants` (`pseudo`, `email`, `groupe`, `motDePasse`) VALUES ('$pseudo', '$email', '$groupe', '$mdp')";
+                            $sql3 = "INSERT INTO `etudiants` (`pseudo`, `email`, `groupe`, `motDePasse`) VALUES ('$pseudo', '$email', '$groupe', '$mdp', '0')";
                             $result = mysqli_query($link, $sql3);
                             // echo "Inscription réussie";
                             $_SESSION['pseudo'] = $pseudo;
                             $_SESSION['email'] = $email;
                             $_SESSION['groupe'] = $groupe;
                             $_SESSION['isConnected'] = true;
-                            $_SESSION['admin'] = false;
-                            header('Location: ../index.html');
+                            // $_SESSION['admin'] = false;
+                            header('Location: ../index.php');
                         } else {
                             // echo "Cet email est déjà utilisé";
                         }
@@ -63,12 +63,13 @@ if ($_POST["inscriptionSubmit"]) {
     $mdp = password_hash($motDePasse, PASSWORD_DEFAULT);
 
     // Connexion en tant qu'admin
-    if ($pseudo == "admin" and $motDePasse == "admin") {
-        $_SESSION['pseudo'] = "Admin";
-        $_SESSION['isConnected'] = true;
-        $_SESSION['admin'] = true;
-        header('Location: ../index.html');
-    } else if (!empty($pseudo)) {
+    // if ($pseudo == "admin" and $motDePasse == "admin") {
+    //     $_SESSION['pseudo'] = "Admin";
+    //     $_SESSION['isConnected'] = true;
+    //     $_SESSION['admin'] = true;
+    //     header('Location: ../index.php');
+    // } else 
+    if (!empty($pseudo)) {
         if (!empty($motDePasse)) {
             // Vérification de l'existence du pseudo
             $sql = "SELECT * FROM `etudiants` WHERE `pseudo` = '$pseudo'";
@@ -84,7 +85,7 @@ if ($_POST["inscriptionSubmit"]) {
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['groupe'] = $row['groupe'];
                     $_SESSION['isConnected'] = true;
-                    header('Location: ../index.html');
+                    header('Location: ../index.php');
                 } else {
                     // Mot de passe incorrect
                     // echo "Mot de passe incorrect";
@@ -102,3 +103,96 @@ if ($_POST["inscriptionSubmit"]) {
 } else {
     // echo "Veuillez remplir tous les champs";
 }
+?>
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/login.css">
+    <title>MMI Devoirs - Log In</title>
+</head>
+
+<body>
+    <header>
+        <figure>
+            <img src="../img/Group 3.png" alt="">
+        </figure>
+    </header>
+
+    <main>
+
+        <form action="../php/login.php" method="post" id="formInscription">
+            <h1>Inscription</h1>
+
+            <fieldset>
+                <div>
+                    <i class="fa-solid fa-user"></i>
+                    <input required minlength="3" name="inscriptionPseudo" type="text" placeholder="Pseudo">
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-envelope"></i>
+                    <input required name="inscriptionEmail" type="email" placeholder="Email">
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    <select name="inscriptionGroupe" id="">
+                        <option value="none" disabled selected>Groupe</option>
+                        <option value="a1">A1</option>
+                        <option value="a2">A2</option>
+                        <option value="b1">B1</option>
+                        <option value="b2">B2</option>
+                    </select>
+                </div>
+
+
+                <div>
+                    <i class="fa-solid fa-lock"></i>
+                    <input required minlength="6" name="inscriptionMDP" type="password" placeholder="Mot de passe">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <input required name="inscriptionSubmit" type="submit" value="S'inscrire">
+                <p id="switchToLogin">Se connecter</p>
+            </fieldset>
+
+        </form>
+
+        <form action="../php/login.php" method="post" id="formConnexion">
+            <h1>Connexion</h1>
+
+            <fieldset>
+                <div>
+                    <i class="fa-solid fa-user"></i>
+                    <input required name="connexionPseudo" type="text" placeholder="Pseudo">
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-lock"></i>
+                    <input required name="connexionMDP" type="password" placeholder="Mot de passe">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <input required name="connexionSubmit" type="submit" value="Se connecter">
+                <p id="switchToSignup">S'inscrire</p>
+            </fieldset>
+
+        </form>
+
+    </main>
+
+
+    <script src="../js/login.js"></script>
+</body>
+
+</html>

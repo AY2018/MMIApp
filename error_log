@@ -1,0 +1,31 @@
+[10-Sep-2023 15:57:14 UTC] PHP Warning:  Undefined array key "isConnected" in /home/nlerond/public_html/MMIApp/index.php on line 2
+[10-Sep-2023 15:57:38 UTC] PHP Warning:  Undefined array key "isConnected" in /home/nlerond/public_html/MMIApp/index.php on line 2
+[10-Sep-2023 17:40:08 UTC] PHP Warning:  Undefined array key "isConnected" in /home/nlerond/public_html/MMIApp/index.php on line 2
+[10-Sep-2023 17:40:08 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 6
+[10-Sep-2023 17:40:08 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 9
+[10-Sep-2023 17:40:08 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 47
+[10-Sep-2023 21:02:34 UTC] PHP Warning:  Undefined array key "isConnected" in /home/nlerond/public_html/MMIApp/index.php on line 2
+[10-Sep-2023 21:02:34 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 6
+[10-Sep-2023 21:02:34 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 9
+[10-Sep-2023 21:02:34 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 53
+[10-Sep-2023 21:02:34 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 53
+[10-Sep-2023 21:52:52 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 37
+[10-Sep-2023 22:29:47 UTC] PHP Warning:  Undefined array key "isConnected" in /home/nlerond/public_html/MMIApp/index.php on line 2
+[10-Sep-2023 22:29:47 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 6
+[10-Sep-2023 22:29:47 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 9
+[10-Sep-2023 22:29:47 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[10-Sep-2023 22:29:47 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 148
+[10-Sep-2023 22:29:47 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 149
+[10-Sep-2023 23:00:38 UTC] PHP Warning:  Undefined array key "isConnected" in /home/nlerond/public_html/MMIApp/index.php on line 2
+[10-Sep-2023 23:00:38 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 6
+[10-Sep-2023 23:00:38 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 9
+[10-Sep-2023 23:00:38 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[10-Sep-2023 23:00:38 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 150
+[10-Sep-2023 23:00:38 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 151
+[10-Sep-2023 23:07:24 UTC] PHP Warning:  Undefined variable $stmt2 in /home/nlerond/public_html/MMIApp/index.php on line 102
+[10-Sep-2023 23:20:40 UTC] PHP Warning:  Undefined array key "isConnected" in /home/nlerond/public_html/MMIApp/index.php on line 2
+[10-Sep-2023 23:20:40 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 6
+[10-Sep-2023 23:20:40 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 9
+[10-Sep-2023 23:20:40 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[10-Sep-2023 23:20:40 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 142
+[10-Sep-2023 23:20:40 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 143
