@@ -29,3 +29,63 @@
 [10-Sep-2023 23:20:40 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
 [10-Sep-2023 23:20:40 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 142
 [10-Sep-2023 23:20:40 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 143
+[11-Sep-2023 15:43:09 UTC] PHP Warning:  Undefined array key "isConnected" in /home/nlerond/public_html/MMIApp/index.php on line 2
+[11-Sep-2023 15:43:09 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 6
+[11-Sep-2023 15:43:09 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 9
+[11-Sep-2023 15:43:09 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[11-Sep-2023 15:43:09 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 139
+[11-Sep-2023 15:43:09 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 140
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:06 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:27:19 UTC] PHP Warning:  Undefined variable $title in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 16:28:28 UTC] PHP Warning:  Undefined array key "title" in /home/nlerond/public_html/MMIApp/index.php on line 183
+[11-Sep-2023 19:52:17 UTC] PHP Warning:  Undefined array key "isConnected" in /home/nlerond/public_html/MMIApp/index.php on line 2
+[11-Sep-2023 19:52:17 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 6
+[11-Sep-2023 19:52:17 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 9
+[11-Sep-2023 19:52:17 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[11-Sep-2023 19:52:17 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 139
+[11-Sep-2023 19:52:17 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 140

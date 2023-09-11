@@ -162,8 +162,47 @@ function ajoutDevoir()
         <!------------ Contenu principal Start ---------->
         <article class="main_content">
             <ul>
+
+                <?php
+                $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
+                $sql = "SELECT devoirs.*, coeffs.competence, coeffs.coeff, fichiers.fichiers_associes
+                        FROM devoirs
+                        LEFT JOIN coeffs ON devoirs.idDevoir = coeffs.idDevoir
+                        LEFT JOIN (
+                            SELECT idDevoir, GROUP_CONCAT(nomFichier) AS fichiers_associes
+                            FROM fichiers
+                            GROUP BY idDevoir
+                        ) AS fichiers ON devoirs.idDevoir = fichiers.idDevoir;
+                        ";
+                $result = mysqli_query($link, $sql);
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    // Convertir la date au format jour/mois
+                    $date = date("d/m", strtotime($row["date"]));²
+                    if ($row["isDone"] == $_SESSION['id']) {
+                        $li = "<li class='done'>";
+                    } else {
+                        $li = "<li>";
+                    }
+
+                    echo $li . '
+                    <input type="checkbox" name="" id="">
+                    <div class="firstColumn">
+                        <h2 class="title">' . $row["titre"] . '</h2>
+                        <p class="matiere">' . $row["matiere"] . '</p>
+                    </div>
+                    <div class="secondColumn">
+                        <p class="date">' . $date . '</p>
+                        <i class="fa-solid fa-circle-info" onclick="openInfo()"></i>
+                    </div>
+                </li>';
+                }
+
+                ?>
+
+
                 <!-- Un devoir -->
-                <li>
+                <!-- <li>
                     <input type="checkbox" name="" id="">
                     <div class="firstColumn">
                         <h2 class="title">Faire 3 audits de 3 sites différents</h2>
@@ -174,10 +213,9 @@ function ajoutDevoir()
                         <p class="date">3/10</p>
                         <i class="fa-solid fa-circle-info" onclick="openInfo()"></i>
                     </div>
-                </li>
+                </li> -->
 
-                <!-- Un devoir -->
-                <li>
+                <!-- <li>
                     <input type="checkbox" name="" id="">
                     <div class="firstColumn">
                         <h2 class="title">Faire 3 audits de 3 sites différents</h2>
@@ -190,7 +228,6 @@ function ajoutDevoir()
                     </div>
                 </li>
 
-                <!-- Un devoir -->
                 <li>
                     <input type="checkbox" name="" id="">
                     <div class="firstColumn">
@@ -202,20 +239,6 @@ function ajoutDevoir()
                         <i class="fa-solid fa-circle-info"></i>
                     </div>
                 </li>
-                <!-- Un devoir -->
-                <li>
-                    <input type="checkbox" name="" id="">
-                    <div class="firstColumn">
-                        <h2 class="title">Faire 3 audits de 3 sites différents</h2>
-                        <p class="matiere">MM2R03 Ergonomie & Accessibilité</p>
-                    </div>
-                    <div class="secondColumn">
-
-                        <p class="date">3/10</p>
-                        <i class="fa-solid fa-circle-info"></i>
-                    </div>
-                </li>
-                <!-- Un devoir -->
                 <li>
                     <input type="checkbox" name="" id="">
                     <div class="firstColumn">
@@ -228,7 +251,18 @@ function ajoutDevoir()
                         <i class="fa-solid fa-circle-info"></i>
                     </div>
                 </li>
-                <!-- Un devoir -->
+                <li>
+                    <input type="checkbox" name="" id="">
+                    <div class="firstColumn">
+                        <h2 class="title">Faire 3 audits de 3 sites différents</h2>
+                        <p class="matiere">MM2R03 Ergonomie & Accessibilité</p>
+                    </div>
+                    <div class="secondColumn">
+
+                        <p class="date">3/10</p>
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                </li>
                 <li class="done">
                     <input type="checkbox" name="" id="">
                     <div class="firstColumn">
@@ -240,7 +274,7 @@ function ajoutDevoir()
                         <p class="date">3/10</p>
                         <i class="fa-solid fa-circle-info"></i>
                     </div>
-                </li>
+                </li> -->
 
             </ul>
         </article>
