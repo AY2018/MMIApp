@@ -1,3 +1,4 @@
+
 // Array of month names in French
 const frenchMonths = [
     "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
@@ -22,15 +23,15 @@ document.getElementById('currentDate').textContent = formattedDate;
 /*************** Set all checkboxes in done to checked ***************/
 
 // Get the container with class 'done'
-const container = document.querySelector('.done');
+// const container = document.querySelector('.done');
 
-// Get all the checkboxes within the container
-const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+// // Get all the checkboxes within the container
+// const checkboxes = container.querySelectorAll('input[type="checkbox"]');
 
-// Set all checkboxes within the container to be checked
-checkboxes.forEach((checkbox) => {
-    checkbox.checked = true;
-});
+// // Set all checkboxes within the container to be checked
+// checkboxes.forEach((checkbox) => {
+//     checkbox.checked = true;
+// });
 
 
 
@@ -48,12 +49,12 @@ toggleButton.addEventListener('click', () => {
         // Toggle the 'flex' and 'none' values for the 'display' property
         if (element.style.display === 'none' || element.style.display === '') {
             element.style.display = 'flex';
+            element.style.flexDirection = 'row';
         } else {
             element.style.display = 'none';
         }
     });
 });
-
 
 
 const addForm = document.getElementById("addForm");

@@ -1,4 +1,9 @@
 <?php session_start();
+// Analysez $request_uri pour déterminer l'endpoint
+// Par exemple, si $request_uri est '/api/mettre-à-jour-état-devoir' et $request_method est 'POST', alors vous savez que l'utilisateur a envoyé des données pour mettre à jour l'état d'un devoir.
+
+// Ensuite, vous pouvez gérer la logique pour cet endpoint spécifique.
+
 if ($_SESSION['isConnected'] == false) {
     header('Location: ./pages/login.html');
 }
@@ -6,6 +11,7 @@ $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nl
 $sql = "SELECT * FROM `etudiants` WHERE `pseudo` = '" . $_SESSION['pseudo'] . "'";
 $result = mysqli_query($link, $sql);
 $row = mysqli_fetch_assoc($result);
+$_SESSION['pseudo'] = $row['pseudo'];
 $_SESSION['id'] = $row['idEtudiant'];
 if ($row['admin'] == 1) {
     $privilege = "admin";
@@ -15,7 +21,6 @@ if ($row['admin'] == 1) {
 
 function ajoutDevoir()
 {
-    var_dump($_POST);
     // Vérification de la connexion à la base de données
     $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
     if (!$link) {
@@ -109,8 +114,10 @@ function ajoutDevoir()
     <link rel="stylesheet" href="./styles/general.css">
     <link rel="stylesheet" href="./styles/home.css">
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>MMI Devoirs</title>
 </head>
+
 
 <body>
 
@@ -137,9 +144,9 @@ function ajoutDevoir()
             <p class="session">
                 <?php
                 if ($row["admin"] == 0) {
-                    echo "Session utilisateur de : " . $row["pseudo"];
+                    echo "Session utilisateur de : " . $_SESSION['pseudo'];
                 } else {
-                    echo "Session admin de : " . $row["pseudo"];
+                    echo "Session admin de : " . $_SESSION['pseudo'];
                 }
                 ?>
             </p>
@@ -158,123 +165,71 @@ function ajoutDevoir()
             </div>
         </section>
 
+        <script>
+            // Utilisez jQuery pour écouter les clics sur les checkboxes
+            // $(document).ready(function() {
+            //     $('.done-checkbox').click(function() {
+            //         var devoirID = $(this).data('id');
+            //         var isChecked = $(this).prop('checked');
+
+            //         // Envoyez une requête AJAX au script PHP pour mettre à jour la base de données
+            //         $.ajax({
+            //             url: 'update_devoir.php', // Le nom de ce fichier
+            //             method: 'POST',
+            //             data: {
+            //                 devoirID: devoirID,
+            //                 isChecked: isChecked
+            //             },
+            //             success: function(response) {
+            //                 // Rafraîchissez la page après la mise à jour
+            //                 location.reload();
+            //             },
+            //             error: function(error) {
+            //                 alert('Erreur lors de la mise à jour du devoir : ' + error);
+            //             }
+            //         });
+            //     });
+            // });
+        </script>
+
         <h1 id="currentDate"></h1>
         <!------------ Contenu principal Start ---------->
         <article class="main_content">
             <ul>
 
                 <?php
+                $id = $_SESSION['id'];
                 $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
-                $sql = "SELECT devoirs.*, coeffs.competence, coeffs.coeff, fichiers.fichiers_associes
-                        FROM devoirs
-                        LEFT JOIN coeffs ON devoirs.idDevoir = coeffs.idDevoir
-                        LEFT JOIN (
-                            SELECT idDevoir, GROUP_CONCAT(nomFichier) AS fichiers_associes
-                            FROM fichiers
-                            GROUP BY idDevoir
-                        ) AS fichiers ON devoirs.idDevoir = fichiers.idDevoir;
-                        ";
+                $sql = "SELECT devoirs.*, coeffs.competence, coeffs.coeff, fichiers.fichiers_associes FROM devoirs LEFT JOIN coeffs ON devoirs.idDevoir = coeffs.idDevoir LEFT JOIN ( SELECT idDevoir, GROUP_CONCAT(nomFichier) AS fichiers_associes FROM fichiers GROUP BY idDevoir ) AS fichiers ON devoirs.idDevoir = fichiers.idDevoir ORDER BY `devoirs`.`date` ASC";
                 $result = mysqli_query($link, $sql);
 
                 while ($row = mysqli_fetch_assoc($result)) {
-                    // Convertir la date au format jour/mois
-                    $date = date("d/m", strtotime($row["date"]));²
-                    if ($row["isDone"] == $_SESSION['id']) {
+                    $devoir = $row["idDevoir"];
+                    $result2 = mysqli_query($link, "SELECT * FROM `etatDevoirs` WHERE `idEtudiant` = $id AND `idDevoir` = $devoir;");
+                    $date = date("d/m", strtotime($row["date"]));
+                    if (($row2 = mysqli_fetch_assoc($result2)) && $row2["statut"] == "terminé") {
                         $li = "<li class='done'>";
                     } else {
                         $li = "<li>";
                     }
 
-                    echo $li . '
-                    <input type="checkbox" name="" id="">
-                    <div class="firstColumn">
-                        <h2 class="title">' . $row["titre"] . '</h2>
-                        <p class="matiere">' . $row["matiere"] . '</p>
+                    echo $li . "
+                    <form action='update_devoir.php' method='post'> 
+                        <input type='hidden' name='devoirID' value='" . $row['idDevoir'] . "'>
+                        <input type='submit' name='done-checkbox' class='done-checkbox'>
+                    </form>
+                    <div class='firstColumn'>
+                        <h2 class='title'>" . $row["titre"] . "</h2>
+                        <p class='matiere'>" . $row["matiere"] . "</p>
                     </div>
-                    <div class="secondColumn">
-                        <p class="date">' . $date . '</p>
-                        <i class="fa-solid fa-circle-info" onclick="openInfo()"></i>
+                    <div class='secondColumn'>
+                        <p class='date'>" . $date . "</p>
+                        <i class='fa-solid fa-circle-info' onclick='openInfo()'></i>
                     </div>
-                </li>';
+                </li>";
                 }
-
                 ?>
 
-
-                <!-- Un devoir -->
-                <!-- <li>
-                    <input type="checkbox" name="" id="">
-                    <div class="firstColumn">
-                        <h2 class="title">Faire 3 audits de 3 sites différents</h2>
-                        <p class="matiere">MM2R03 Ergonomie & Accessibilité</p>
-                    </div>
-                    <div class="secondColumn">
-
-                        <p class="date">3/10</p>
-                        <i class="fa-solid fa-circle-info" onclick="openInfo()"></i>
-                    </div>
-                </li> -->
-
-                <!-- <li>
-                    <input type="checkbox" name="" id="">
-                    <div class="firstColumn">
-                        <h2 class="title">Faire 3 audits de 3 sites différents</h2>
-                        <p class="matiere">MM2R03 Ergonomie & Accessibilité</p>
-                    </div>
-                    <div class="secondColumn">
-
-                        <p class="date">3/10</p>
-                        <i class="fa-solid fa-circle-info"></i>
-                    </div>
-                </li>
-
-                <li>
-                    <input type="checkbox" name="" id="">
-                    <div class="firstColumn">
-                        <h2 class="title">Faire 3 audits de 3 sites différents</h2>
-                        <p class="matiere">MM2R03 Ergonomie & Accessibilité</p>
-                    </div>
-                    <div class="secondColumn">
-                        <p class="date">3/10</p>
-                        <i class="fa-solid fa-circle-info"></i>
-                    </div>
-                </li>
-                <li>
-                    <input type="checkbox" name="" id="">
-                    <div class="firstColumn">
-                        <h2 class="title">Faire 3 audits de 3 sites différents</h2>
-                        <p class="matiere">MM2R03 Ergonomie & Accessibilité</p>
-                    </div>
-                    <div class="secondColumn">
-
-                        <p class="date">3/10</p>
-                        <i class="fa-solid fa-circle-info"></i>
-                    </div>
-                </li>
-                <li>
-                    <input type="checkbox" name="" id="">
-                    <div class="firstColumn">
-                        <h2 class="title">Faire 3 audits de 3 sites différents</h2>
-                        <p class="matiere">MM2R03 Ergonomie & Accessibilité</p>
-                    </div>
-                    <div class="secondColumn">
-
-                        <p class="date">3/10</p>
-                        <i class="fa-solid fa-circle-info"></i>
-                    </div>
-                </li>
-                <li class="done">
-                    <input type="checkbox" name="" id="">
-                    <div class="firstColumn">
-                        <h2 class="title">Faire 3 audits de 3 sites différents</h2>
-                        <p class="matiere">MM2R03 Ergonomie & Accessibilité</p>
-                    </div>
-                    <div class="secondColumn">
-
-                        <p class="date">3/10</p>
-                        <i class="fa-solid fa-circle-info"></i>
-                    </div>
-                </li> -->
 
             </ul>
         </article>
@@ -287,10 +242,10 @@ function ajoutDevoir()
             <h1>Nouveau devoir</h1>
 
             <label for="title">Titre <span>*</span></label>
-            <input type="text" name="ajoutTitle" placeholder="Titre du devoir ..." required>
+            <input id="title" type="text" name="ajoutTitle" placeholder="Titre du devoir ..." required>
 
             <label for="matiere">Matière <span>*</span></label>
-            <select name="ajoutMatiere" id="" required>
+            <select id="matiere" name="ajoutMatiere" required>
                 <option selected value=""></option>
                 <option>MM2R03 Ergonomie & Accessibilité</option>
                 <option>MM2R04 Culture Numérique</option>
@@ -311,14 +266,14 @@ function ajoutDevoir()
             </select>
 
             <label for="date">Date <span>*</span></label>
-            <input type="date" name="ajoutDate" class="inputDate" required>
+            <input id="date" type="date" name="ajoutDate" class="inputDate" required>
 
             <label for="description">Description <span>*</span></label>
-            <textarea maxlength="255" name="ajoutDescription" id="" cols="30" rows="5" placeholder="Ajouter une description ..." required></textarea>
+            <textarea maxlength="255" name="ajoutDescription" id="description" cols="30" rows="5" placeholder="Ajouter une description ..." required></textarea>
 
             <label for="type">Type <span>*</span></label>
             <fieldset>
-                <select required name="ajoutType">
+                <select id="type" required name="ajoutType">
                     <option selected></option>
                     <option>DS</option>
                     <option>TP</option>
@@ -328,15 +283,15 @@ function ajoutDevoir()
                 </select>
 
                 <label for="coef" class="coefLabel">coef. <span>*</span></label>
-                <input required type="number" name="ajoutCoef">
+                <input id="coef" required type="number" name="ajoutCoef">
             </fieldset>
 
             <label for="file[]">Fichiers</label>
-            <input type="file" multiple accept="*/*" name="ajoutFile[]">
+            <input id="file[]" type="file" multiple accept="*/*" name="ajoutFile[]">
 
             <label for="coefMatier">Coef. de la matière dans la compétence <span>*</span></label>
             <fieldset>
-                <select required name="ajoutCoefMat">
+                <select id="coefMatier" required name="ajoutCoefMat">
                     <option selected value=""></option>
                     <option value="Comprendre">Comprendre</option>
                     <option value="Developper">Developper</option>
@@ -345,7 +300,7 @@ function ajoutDevoir()
                     <option value="Entreprendre">Entreprendre</option>
                 </select>
 
-                <input name="ajoutCoefMatValue" required type="float" class="coefLabel">
+                <input name="ajoutCoefMatValue" required type="number" class="coefLabel">
             </fieldset>
 
             <input type="submit" name="ajoutSubmit" value="Ajouter">

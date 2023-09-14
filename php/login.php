@@ -14,7 +14,7 @@ $mdp = password_hash($motDePasse, PASSWORD_DEFAULT);
 
 if ($_POST["inscriptionSubmit"]) {
     if (!empty($pseudo)) {
-        if (!empty($email) and filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!empty($email)) {
             if (!empty($groupe)) {
                 if (!empty($mdp)) {
                     // Vérification de l'unicité du pseudo
@@ -27,32 +27,37 @@ if ($_POST["inscriptionSubmit"]) {
                     if (mysqli_num_rows($result) === 0) {
                         if (mysqli_num_rows($result2) === 0) {
                             // Insertion des données dans la base de données
-                            $sql3 = "INSERT INTO `etudiants` (`pseudo`, `email`, `groupe`, `motDePasse`) VALUES ('$pseudo', '$email', '$groupe', '$mdp', '0')";
+                            $sql3 = "INSERT INTO `etudiants` (`pseudo`, `email`, `groupe`, `motDePasse`, `admin`) VALUES ('$pseudo', '$email', '$groupe', '$mdp', 0)";
                             $result = mysqli_query($link, $sql3);
-                            // echo "Inscription réussie";
+                            echo "Inscription réussie";
                             $_SESSION['pseudo'] = $pseudo;
                             $_SESSION['email'] = $email;
                             $_SESSION['groupe'] = $groupe;
                             $_SESSION['isConnected'] = true;
                             // $_SESSION['admin'] = false;
-                            header('Location: ../index.php');
+                            if ($result) {
+                                echo "Inscription réussie";
+                                header('Location: ../index.php');
+                            } else {
+                                echo "Erreur lors de l'inscription";
+                            }
                         } else {
-                            // echo "Cet email est déjà utilisé";
+                            echo "Cet email est déjà utilisé";
                         }
                     } else {
-                        // echo "Ce pseudo est déjà utilisé";
+                        echo "Ce pseudo est déjà utilisé";
                     }
                 } else {
-                    // echo "Vous n'avez pas rentré de mot de passe ou le mot de passe n'est pas valide";
+                    echo "Vous n'avez pas rentré de mot de passe ou le mot de passe n'est pas valide";
                 }
             } else {
-                // echo "Vous n'avez pas rentré de groupe ou le groupe n'est pas valide";
+                echo "Vous n'avez pas rentré de groupe ou le groupe n'est pas valide";
             }
         } else {
-            // echo "Vous n'avez pas rentré d'email ou l'email n'est pas valide";
+            echo "Vous n'avez pas rentré d'email ou l'email n'est pas valide";
         }
     } else {
-        // echo "Vous n'avez pas rentré de pseudo ou le pseudo n'est pas valide";
+        echo "Vous n'avez pas rentré de pseudo ou le pseudo n'est pas valide";
     }
 } else if ($_POST["connexionSubmit"]) {
     // Partie gestion des données du formulaire de connexion
