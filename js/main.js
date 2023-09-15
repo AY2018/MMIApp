@@ -74,11 +74,30 @@ const infoArticle = document.getElementById("infoDevoir");
 
 function closeInfo() {
     infoArticle.style.display = "none";
+
+    // Supprimez le cookie "id" en le définissant avec une date d'expiration passée
+    // document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    location.reload();
 }
 
-function openInfo() {
+function openInfo(devoirID) {
     infoArticle.style.display = "flex";
+
+    // Créez une date actuelle
+    var currentDate = new Date();
+
+    // Ajoutez 24 heures (en millisecondes) à la date actuelle
+    currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
+
+    // Convertissez la date en format UTC pour le cookie
+    var expires = "expires=" + currentDate.toUTCString();
+
+    // Définissez le cookie avec la date d'expiration calculée
+    document.cookie = "id=" + devoirID + "; " + expires + "; path=/";
 }
+
+
+
 
 const modifArticle = document.getElementById("modifForm");
 

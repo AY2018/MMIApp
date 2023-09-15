@@ -127,7 +127,7 @@ if ($_POST["inscriptionSubmit"]) {
 <body>
     <header>
         <figure>
-            <img src="../img/Group 3.png" alt="">
+            <img src="../img/Group3.png" alt="logo de l'application">
         </figure>
     </header>
 
@@ -161,7 +161,7 @@ if ($_POST["inscriptionSubmit"]) {
 
                 <div>
                     <i class="fa-solid fa-lock"></i>
-                    <input required minlength="6" name="inscriptionMDP" type="password" placeholder="Mot de passe">
+                    <input required minlength="6" name="inscriptionMDP" type="password" autocomplete="current-password" placeholder="Mot de passe">
                 </div>
             </fieldset>
 
@@ -183,7 +183,7 @@ if ($_POST["inscriptionSubmit"]) {
 
                 <div>
                     <i class="fa-solid fa-lock"></i>
-                    <input required name="connexionMDP" type="password" placeholder="Mot de passe">
+                    <input required name="connexionMDP" type="password" autocomplete="current-password" placeholder="Mot de passe">
                 </div>
             </fieldset>
 

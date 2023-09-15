@@ -12,16 +12,16 @@ if (isset($_POST['done-checkbox'])) {
     if (mysqli_num_rows($recupInfoQuery) == 0) {
         $sql = "INSERT INTO etatDevoirs (`idEtudiant`, `idDevoir`, `statut`) VALUES ($idEtudiant, $devoirID, 'terminé')";
         $result = mysqli_query($link, $sql);
-        header('Location: index.php');
+        header('Location: ../index.php');
     } else {
         if ($rowInfos['statut'] == 'terminé') {
             $sql = "UPDATE etatDevoirs SET statut = 'non terminé' WHERE idEtudiant = $idEtudiant AND idDevoir = $devoirID";
             $result = mysqli_query($link, $sql);
-            header('Location: index.php');
+            header('Location: ../index.php');
         } else {
             $sql = "UPDATE etatDevoirs SET statut = 'terminé' WHERE idEtudiant = $idEtudiant AND idDevoir = $devoirID";
             $result = mysqli_query($link, $sql);
-            header('Location: index.php');
+            header('Location: ../index.php');
         }
     }
 }

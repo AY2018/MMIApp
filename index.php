@@ -1,11 +1,7 @@
 <?php session_start();
-// Analysez $request_uri pour déterminer l'endpoint
-// Par exemple, si $request_uri est '/api/mettre-à-jour-état-devoir' et $request_method est 'POST', alors vous savez que l'utilisateur a envoyé des données pour mettre à jour l'état d'un devoir.
 
-// Ensuite, vous pouvez gérer la logique pour cet endpoint spécifique.
-
-if ($_SESSION['isConnected'] == false) {
-    header('Location: ./pages/login.html');
+if (!isset($_SESSION['isConnected']) || $_SESSION['isConnected'] == false) {
+    header('Location: ./php/login.php');
 }
 $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
 $sql = "SELECT * FROM `etudiants` WHERE `pseudo` = '" . $_SESSION['pseudo'] . "'";
@@ -42,58 +38,63 @@ function ajoutDevoir()
     $coefMat = isset($_POST['ajoutCoefMat']) ? mysqli_real_escape_string($link, $_POST['ajoutCoefMat']) : 'null'; // Vérifiez si le champ coefMat est renseigné
     $coefMatValue = isset($_POST['ajoutCoefMatValue']) ? mysqli_real_escape_string($link, $_POST['ajoutCoefMatValue']) : 'null'; // Vérifiez si le champ coefMatValue est renseigné
 
-    // Insertion du devoir
-    $sql = "INSERT INTO `devoirs` (`titre`, `matiere`, `date`, `description`, `type`, `coefDevoir`, `isDone`, `idEtudiant`)
-            VALUES ('$title', '$matiere', '$date', '$description', '$type', $coef, NULL, '" . $_SESSION['id'] . "')";
-    $result = mysqli_query($link, $sql);
+    $CheckInfos = "SELECT * FROM `devoirs` WHERE `titre` = '$title' AND `matiere` = '$matiere' AND `date` = '$date' AND `description` = '$description' AND `type` = '$type' AND `coefDevoir` = $coef AND `idEtudiant` = '" . $_SESSION['id'] . "'";
+    $CheckInfosQuery = mysqli_query($link, $CheckInfos);
+    if (mysqli_num_rows($CheckInfosQuery) > 0) {
+        die("Ce devoir existe déjà.");
+    } else {
+        // Insertion du devoir
+        $sql = "INSERT INTO `devoirs` (`titre`, `matiere`, `date`, `description`, `type`, `coefDevoir`, `idEtudiant`)
+            VALUES ('$title', '$matiere', '$date', '$description', '$type', $coef, '" . $_SESSION['id'] . "')";
+        $result = mysqli_query($link, $sql);
 
-    if ($result) {
-        // Récupération de l'ID du devoir inséré
-        $idDevoir = mysqli_insert_id($link);
+        if ($result) {
+            // Récupération de l'ID du devoir inséré
+            $idDevoir = mysqli_insert_id($link);
 
-        // Insertion des coefficients s'ils sont renseignés
-        $sql2 = "INSERT INTO coeffs (`competence`, `coeff`, `idDevoir`) VALUES ('$coefMat', $coefMatValue, $idDevoir)";
-        $result2 = mysqli_query($link, $sql2);
+            // Insertion des coefficients s'ils sont renseignés
+            $sql2 = "INSERT INTO coeffs (`competence`, `coeff`, `idDevoir`) VALUES ('$coefMat', $coefMatValue, $idDevoir)";
+            $result2 = mysqli_query($link, $sql2);
 
-        // if (!$result2) {
-        //     echo "Erreur lors de l'insertion des coefficients.";
-        // }
-    }
-    // else {
-    //     echo "Erreur lors de l'insertion du devoir : " . mysqli_error($link);
-    // }
+            if ($result2) {
+                // Upload des fichiers transmis par le formulaire vers le serveur et la base de données
+                if (isset($_FILES['ajoutFile']) && !empty($_FILES['ajoutFile']['name'][0])) {
+                    // Gérer les fichiers uploadés
+                    $uploadDirectory = "./fichiers/"; // Chemin du dossier où les fichiers seront enregistrés
 
-    // Upload des fichiers transmis par le formulaire vers le serveur et la base de données
-    if (isset($_FILES['ajoutFile']) && !empty($_FILES['ajoutFile']['name'][0])) {
-        // Gérer les fichiers uploadés
-        $uploadDirectory = "./fichiers/"; // Chemin du dossier où les fichiers seront enregistrés
+                    foreach ($_FILES['ajoutFile']['name'] as $index => $fileName) {
+                        // Générer un nom de fichier unique
+                        $uniqueFileName = uniqid() . "_" . $fileName;
+                        $targetPath = $uploadDirectory . $uniqueFileName;
 
-        foreach ($_FILES['ajoutFile']['name'] as $index => $fileName) {
-            // Générer un nom de fichier unique
-            $uniqueFileName = uniqid() . "_" . $fileName;
-            $targetPath = $uploadDirectory . $uniqueFileName;
+                        // Vérifier si le fichier a été téléchargé avec succès
+                        if (move_uploaded_file($_FILES['ajoutFile']['tmp_name'][$index], $targetPath)) {
+                            // Insérer le nom du fichier dans la base de données avec le même ID de devoir
+                            $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir)";
+                            $result4 = mysqli_query($link, $sql4);
 
-            // Vérifier si le fichier a été téléchargé avec succès
-            if (move_uploaded_file($_FILES['ajoutFile']['tmp_name'][$index], $targetPath)) {
-                // Insérer le nom du fichier dans la base de données avec le même ID de devoir
-                $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir)";
-                $result4 = mysqli_query($link, $sql4);
 
-                // if (!$result4) {
-                //     echo "Erreur lors de l'insertion du nom du fichier : " . mysqli_error($link);
+                            // if (!$result4) {
+                            //     echo "Erreur lors de l'insertion du nom du fichier : " . mysqli_error($link);
+                            // }
+                        }
+                        // else {
+                        //     // Gérer les erreurs d'upload
+                        //     echo "Erreur lors du téléchargement du fichier : " . $_FILES['ajoutFile']['error'][$index];
+                        // }
+                    }
+                }
+                // else {
+                //     echo "Aucun fichier n'a été téléchargé.";
                 // }
+                echo "<script>location.reload();</script>";
+            } else {
+                echo "Erreur lors de l'insertion des coefficients.";
             }
-            // else {
-            //     // Gérer les erreurs d'upload
-            //     echo "Erreur lors du téléchargement du fichier : " . $_FILES['ajoutFile']['error'][$index];
-            // }
+        } else {
+            echo "Erreur lors de l'insertion du devoir : " . mysqli_error($link);
         }
     }
-    // else {
-    //     echo "Aucun fichier n'a été téléchargé.";
-    // }
-
-
     // Fermeture de la connexion
     mysqli_close($link);
 }
@@ -115,6 +116,7 @@ function ajoutDevoir()
     <link rel="stylesheet" href="./styles/home.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>MMI Devoirs</title>
 </head>
 
@@ -166,24 +168,19 @@ function ajoutDevoir()
         </section>
 
         <script>
-            // Utilisez jQuery pour écouter les clics sur les checkboxes
+            //Utilisez jQuery pour écouter les clics sur les checkboxes
             // $(document).ready(function() {
-            //     $('.done-checkbox').click(function() {
-            //         var devoirID = $(this).data('id');
-            //         var isChecked = $(this).prop('checked');
+            //     $('#iDevoir').click(function() {
+            //         var devoirID = document.getElementById('iDevoir').getAttribute('data-iddevoir');
 
             //         // Envoyez une requête AJAX au script PHP pour mettre à jour la base de données
             //         $.ajax({
-            //             url: 'update_devoir.php', // Le nom de ce fichier
+            //             url: 'index.php', // Le nom de ce fichier
             //             method: 'POST',
             //             data: {
-            //                 devoirID: devoirID,
-            //                 isChecked: isChecked
+            //                 devoirID: devoirID
             //             },
-            //             success: function(response) {
-            //                 // Rafraîchissez la page après la mise à jour
-            //                 location.reload();
-            //             },
+            //             success: function(response) {},
             //             error: function(error) {
             //                 alert('Erreur lors de la mise à jour du devoir : ' + error);
             //             }
@@ -214,7 +211,7 @@ function ajoutDevoir()
                     }
 
                     echo $li . "
-                    <form action='update_devoir.php' method='post'> 
+                    <form action='php/update_devoir.php' method='post'> 
                         <input type='hidden' name='devoirID' value='" . $row['idDevoir'] . "'>
                         <input type='submit' name='done-checkbox' class='done-checkbox'>
                     </form>
@@ -224,13 +221,19 @@ function ajoutDevoir()
                     </div>
                     <div class='secondColumn'>
                         <p class='date'>" . $date . "</p>
-                        <i class='fa-solid fa-circle-info' onclick='openInfo()'></i>
+                        <button id='iDevoir' class='fa-solid fa-circle-info' onclick='openInfo(" . $row['idDevoir'] . ")'></button>
                     </div>
                 </li>";
                 }
                 ?>
-
-
+                <style>
+                    .fa-circle-info {
+                        background-color: transparent;
+                        border: none;
+                        font-size: 1rem;
+                        cursor: pointer;
+                    }
+                </style>
             </ul>
         </article>
     </main>
@@ -335,7 +338,8 @@ function ajoutDevoir()
             <label for="type">Type <span>*</span></label>
             <fieldset>
                 <select required name="type">
-                    <option selected>DS</option>
+                    <option selected></option>
+                    <option>DS</option>
                     <option>TP</option>
                     <option>Devoir à rendre</option>
                     <option>Présentation Orale</option>
@@ -368,10 +372,48 @@ function ajoutDevoir()
 
     <article class="infoDevoir" id="infoDevoir">
         <section>
+
+            <?php
+            // // Vérifier si c'est une requête AJAX
+            // if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            //     // C'est une requête AJAX
+            //     if (isset($_GET['idDevoir'])) {
+            //         $idDevoir = $_GET['idDevoir'];
+            //         // Faites ce que vous voulez avec l'ID du devoir ici
+            //         echo "L'ID du devoir est : " . $idDevoir;
+            //     } else {
+            //         echo "L'ID du devoir n'a pas été spécifié dans la requête AJAX.";
+            //     }
+            // } else {
+            //     // Ce n'est pas une requête AJAX, vous pouvez gérer cela différemment si nécessaire
+            //     echo "Requête HTTP normale.";
+            // }
+            ?>
+
+            <div id="resultat"></div>
+
+
+
             <i class="fa-solid fa-pen-to-square btnModifDev" onclick="openModif()"></i>
             <i class="fa-solid fa-x" onclick="closeInfo()"></i>
             <h1>Détails</h1>
-
+            <?php
+            // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //     // Récupérer les données envoyées par AJAX
+            //     $data = $_POST['data'];
+            //     $idDevoir = $data['idDevoir'];
+            //     $idD = $_POST['idDevoir'];
+            //     echo $idDevoir . " " . $idD . " " . $data;
+            // } else {
+            //     echo "Erreur lors de la récupération des données.";
+            // }
+            if ($id_devoir = $_COOKIE['id']) {
+                $id_devoir = $_COOKIE['id'];
+            } else {
+                echo "Erreur lors de la récupération des données.";
+            }
+            echo $id_devoir;
+            ?>
             <h2>Description</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ipsa qui natus distinctio doloremque
                 voluptas quidem, dolore temporibus delectus! Hic, tempore iure in sit voluptas repellat rem maiores
