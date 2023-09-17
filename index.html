@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="./styles/general.css">
+    <link rel="stylesheet" href="./styles/home.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>MMI Devoirs</title>
+</head>
+
+<body>
+
+    <header>
+        <figure>
+            <img src="./img/Group3.png" alt="">
+        </figure>
+    </header>
+
+    <main>
+        <section class="heading">
+            <h1>Devoirs</h1>
+            <!-- Example button (you can change it according to your needs) -->
+            <i class="fa-solid fa-plus btnAddDevoir" onclick="openAdd()"></i>
+            
+            <style>
+                .session {
+                    color: white;
+                }
+            </style>
+            <p class="session">
+                Session example: Username
+            </p>
+
+            <a href="#">déco</a>
+        </section>
+
+        <section class="sub_heading">
+
+            <div class="row_type_done">
+                <h2>Afficher devoirs finis</h2>
+                <div>
+                    <input type="checkbox" id="toggle-btn">
+                    <label for="toggle-btn"></label>
+                </div>
+            </div>
+        </section>
+
+        <h1 id="currentDate"></h1>
+
+        <article class="main_content">
+            <ul>
+                <!-- Example list item (you can replicate it according to your needs) -->
+                <li>
+                    <form action='#' method='post'> 
+                        <input type='hidden' name='devoirID' value='ExampleValue'>
+                        <input type='submit' name='done-checkbox' class='done-checkbox' value="">
+                        <i class="fa-solid fa-check"></i>
+                    </form>
+                    <div class='firstColumn'>
+                        <h2 class='title'>Example Title</h2>
+                        <p class='matiere'>Example Subject</p>
+                    </div>
+                    <div class='secondColumn'>
+                        <p class='date'>13/11</p>
+                        <button id='iDevoir' class='fa-solid fa-circle-info' onclick='openInfo()'></button>
+                    </div>
+                </li>
+            </ul>
+        </article>
+    </main>
+
+    <article class="addDevoir" id="addForm">
+        <!-- Add Form here -->
+    </article>
+
+    <article class="addDevoir" id="modifForm">
+        <!-- Modify Form here -->
+    </article>
+
+    <article class="infoDevoir" id="infoDevoir">
+        <!-- Info content here -->
+    </article>
+
+    <script>
+        function check() {
+    const button = document.getElementById('iDevoir');
+
+    if (button.classList.contains('checked')) {
+        button.classList.remove('checked');
+    } else {
+        button.classList.add('checked');
+    }
+}
+
+    </script>
+</body>
+</html>

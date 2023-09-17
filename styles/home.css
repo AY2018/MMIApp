@@ -164,6 +164,7 @@ ul li .fa-circle-info{
 ul li.done {
     opacity: 0.5;
     display: none;
+    align-items: center;
 }
 
 ul li.done .title{
@@ -178,6 +179,65 @@ ul li.done .firstColumn{
     text-align: center;
 }
 
+
+
+.done-checkbox {
+    border: 2px solid #333;
+    background-color: transparent;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    outline: none;
+    cursor: pointer;
+
+}
+
+/* Hide the default icon */
+ul li form .fa-check:before {
+    opacity: 0;
+}
+
+/* Style when the button is "checked" */
+
+ul li form{
+    position: relative;
+}
+
+ul li .done-checkbox {
+    border-color: #53256E;
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}
+
+
+ul li form .fa-check:before{
+    position: absolute;
+    color: #53256E;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    
+}
+
+ul li.done form .fa-check:before{
+    opacity: 1;
+    
+}
+
+#iDevoir{
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
 
 
 /*** Add Devoir ***/

@@ -214,6 +214,7 @@ function ajoutDevoir()
                     <form action='php/update_devoir.php' method='post'> 
                         <input type='hidden' name='devoirID' value='" . $row['idDevoir'] . "'>
                         <input type='submit' name='done-checkbox' class='done-checkbox'>
+                        <i class='fa-solid fa-check'></i>
                     </form>
                     <div class='firstColumn'>
                         <h2 class='title'>" . $row["titre"] . "</h2>
@@ -226,14 +227,6 @@ function ajoutDevoir()
                 </li>";
                 }
                 ?>
-                <style>
-                    .fa-circle-info {
-                        background-color: transparent;
-                        border: none;
-                        font-size: 1rem;
-                        cursor: pointer;
-                    }
-                </style>
             </ul>
         </article>
     </main>
