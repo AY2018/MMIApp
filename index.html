@@ -18,6 +18,8 @@
         <figure>
             <img src="./img/Group3.png" alt="">
         </figure>
+
+        <a href="#"><i class="fa-solid fa-right-from-bracket"></i></a>
     </header>
 
     <main>
@@ -25,17 +27,6 @@
             <h1>Devoirs</h1>
             <!-- Example button (you can change it according to your needs) -->
             <i class="fa-solid fa-plus btnAddDevoir" onclick="openAdd()"></i>
-
-            <style>
-                .session {
-                    color: white;
-                }
-            </style>
-            <p class="session">
-                Session example: Username
-            </p>
-
-            <a href="#">déco</a>
         </section>
 
         <section class="sub_heading">
@@ -73,8 +64,77 @@
         </article>
     </main>
 
+    <!------------ Ajouter formulaire  ---------->
     <article class="addDevoir" id="addForm">
-        <!-- Add Form here -->
+        <form action="index.php" method="post" class="addDevoir_form" enctype="multipart/form-data">
+            <i class=" fa-solid fa-x" onclick="closeAdd()"></i>
+            <h1>Nouveau devoir</h1>
+    
+            <label for="title">Titre <span>*</span></label>
+            <input id="title" type="text" name="ajoutTitle" placeholder="Titre du devoir ..." required>
+    
+            <label for="matiere">Matière <span>*</span></label>
+            <select id="matiere" name="ajoutMatiere" required>
+                <option selected value=""></option>
+                <option>MM2R03 Ergonomie & Accessibilité</option>
+                <option>MM2R04 Culture Numérique</option>
+                <option>MM2R16 Représentation et traitement de l'information</option>
+                <option>MM2R05 Stratégie de communication</option>
+                <option>MM2R06 Expression, communication et rhétorique</option>
+                <option>MM2R07 Écriture multimédia et narration</option>
+                <option>MM2R08 Production graphique</option>
+                <option>MM2R09 Culture artistique</option>
+                <option>MM2R10 Production audio & vidéo</option>
+                <option>MM2R11 Gestion de contenus</option>
+                <option>MM2R12 Intégration</option>
+                <option>MM2R13 Développement Web</option>
+                <option>MM2R14 Système d'information</option>
+                <option>MM2R17 Gestion de projet</option>
+                <option>MM2R18 Economie et Droit du numérique</option>
+                <option>MM2R19 Projet Personnel et Professionnel</option>
+            </select>
+    
+            <label for="date">Date <span>*</span></label>
+            <input id="date" type="date" name="ajoutDate" class="inputDate" required>
+    
+            <label for="description">Description <span>*</span></label>
+            <textarea maxlength="255" name="ajoutDescription" id="description" cols="30" rows="5"
+                placeholder="Ajouter une description ..."></textarea>
+    
+            <label for="type">Type <span>*</span></label>
+            <fieldset>
+                <select id="type" required name="ajoutType">
+                    <option selected></option>
+                    <option>DS</option>
+                    <option>TP</option>
+                    <option>Devoir à rendre</option>
+                    <option>Présentation Orale</option>
+                    <option>SAE</option>
+                </select>
+    
+                <label for="coef" class="coefLabel">coef. <span>*</span></label>
+                <input id="coef" type="number" name="ajoutCoef">
+            </fieldset>
+    
+            <label for="file[]">Fichiers</label>
+            <input id="file[]" type="file" multiple accept="*/*" name="ajoutFile[]">
+    
+            <label for="coefMatier">Coef. de la matière dans la compétence <span>*</span></label>
+            <fieldset>
+                <select id="coefMatier" name="ajoutCoefMat">
+                    <option selected value=""></option>
+                    <option value="Comprendre">Comprendre</option>
+                    <option value="Developper">Developper</option>
+                    <option value="Exprimer">Exprimer</option>
+                    <option value="Concevoir">Concevoir</option>
+                    <option value="Entreprendre">Entreprendre</option>
+                </select>
+    
+                <input name="ajoutCoefMatValue" type="number" class="coefLabel">
+            </fieldset>
+    
+            <input type="submit" name="ajoutSubmit" value="Ajouter">
+        </form>
     </article>
 
     <article class="addDevoir" id="modifForm">

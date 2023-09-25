@@ -13,6 +13,7 @@ main {
     display: flex;
     gap: 20px;
     align-items: center;
+    position: relative;
 }
 
 .heading h1 {
@@ -27,6 +28,7 @@ main {
     height: fit-content;
     cursor: pointer;
 }
+
 
 /* Sub-Heading */
 
@@ -247,9 +249,10 @@ ul li.done form .fa-check:before {
     position: absolute;
     z-index: 10;
     backdrop-filter: blur(8px) brightness(0.8);
-    min-height: 100vh;
+    height: 100vh;
     top: 50%;
     left: 50%;
+    
     transform: translate(-50%, -50%);
     width: 100%;
     display: none;
@@ -257,6 +260,13 @@ ul li.done form .fa-check:before {
     justify-content: center;
     opacity: 0;
     animation: 0.3s ease-in forwards fadeIn;
+    height: 700px;
+    padding: 5vh 5%;
+    overflow: scroll;
+}
+
+#addForm{
+    display: flex;
 }
 
 @keyframes fadeIn {
@@ -270,10 +280,12 @@ ul li.done form .fa-check:before {
     border-radius: 15px;
     padding: 30px 40px;
     width: 90%;
-    height: 90vh;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 100%;
+    overflow: scroll;
+    position: relative;
 }
 
 .addDevoir h1 {
@@ -283,7 +295,7 @@ ul li.done form .fa-check:before {
 
 .addDevoir .fa-x {
     position: absolute;
-    right: 10%;
+    right: 20px;
 }
 
 .addDevoir span {
@@ -292,6 +304,9 @@ ul li.done form .fa-check:before {
 
 .addDevoir fieldset {
     border: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 
@@ -320,9 +335,7 @@ ul li.done form .fa-check:before {
     border: none;
 }
 
-.coefLabel {
-    margin-left: 20px;
-}
+
 
 .addDevoir input[type="submit"] {
     width: fit-content;
@@ -417,21 +430,6 @@ ul li.done form .fa-check:before {
 
 /* Delete Article */
 
-
-
-.addDevoir form {
-    background-color: white;
-    border-radius: 15px;
-    padding: 60px 40px;
-    width: fit-content;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    position: relative;
-}
 
 .addDevoir form p {
     color: red;
