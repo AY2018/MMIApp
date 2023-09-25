@@ -16267,3 +16267,18 @@ Stack trace:
 #0 /home/nlerond/public_html/MMIApp/index.php(346): mysqli_fetch_assoc(false)
 #1 {main}
   thrown in /home/nlerond/public_html/MMIApp/index.php on line 346
+[25-Sep-2023 10:57:57 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[25-Sep-2023 10:57:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[25-Sep-2023 10:57:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[25-Sep-2023 10:57:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[25-Sep-2023 10:57:57 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 243
+[25-Sep-2023 10:57:58 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:346
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(346): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 346
+[25-Sep-2023 12:32:12 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:41
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(497): ajoutDevoir()
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 41

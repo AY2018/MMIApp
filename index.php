@@ -1,8 +1,8 @@
 <?php session_start();
 
-// if (!isset($_SESSION['isConnected']) || $_SESSION['isConnected'] == false) {
-//     header('Location: ./php/login.php');
-// }
+if (!isset($_SESSION['isConnected']) || $_SESSION['isConnected'] == false) {
+    header('Location: ./php/login.php');
+}
 $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
 $sql = "SELECT * FROM `etudiants` WHERE `pseudo` = '" . $_SESSION['pseudo'] . "'";
 $result = mysqli_query($link, $sql);
@@ -31,13 +31,17 @@ function ajoutDevoir()
     $coefMatValue = isset($_POST['ajoutCoefMatValue']) && $_POST['ajoutCoefMatValue'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoefMatValue']) . "'" : 'NULL';
 
 
-    $CheckInfos = "SELECT * FROM `devoirs` WHERE `titre` = '$title' AND `matiere` = '$matiere' AND `date` = '$date' AND `type` = '$type'";
+    $CheckInfos = "SELECT * FROM `devoirs` WHERE `titre` = '$title' AND `matiere` = '$matiere'";
     $CheckInfosQuery = mysqli_query($link, $CheckInfos);
 
 
     // gerer l'erreur de la requete sql
     if (mysqli_num_rows($CheckInfosQuery) > 0) {
-        echo "Ce devoir existe déjà !";
+        echo "<script>console.log(mysqli_error($link))</script>";
+        echo "<section class='errorMsg' id='errorMsg'>
+            <i class=' fa-solid fa-x'></i>
+            <p>Le devoir existe déjà, veuillez rééssayer !</p>
+        </section>";
     } else {
         $sql = "INSERT INTO `devoirs` (`titre`, `matiere`, `date`, `description`, `type`, `coefDevoir`, `idEtudiant`)
         SELECT '$title', '$matiere', '$date', $description, '$type', $coef, '" . $_SESSION['id'] . "'
@@ -71,16 +75,32 @@ function ajoutDevoir()
                         $result4 = mysqli_query($link, $sql4);
 
                         if (!$result4) {
-                            echo "Erreur lors de l'insertion du nom du fichier : " . mysqli_error($link);
+                            echo "<script>console.log(mysqli_error($link))</script>";
+                            echo "<section class='errorMsg' id='errorMsg'>
+                                <i class=' fa-solid fa-x'></i>
+                                <p>Erreur lors de l'ajout du devoir, veuillez rééssayer !</p>
+                            </section>";
                         }
                     } else {
                         // Gérer les erreurs d'upload
-                        echo "Erreur lors du téléchargement du fichier : " . $_FILES['ajoutFile']['error'][$index];
+                        echo "<script>console.log(mysqli_error($link))</script>";
+                        echo "<section class='errorMsg' id='errorMsg'>
+                                <i class=' fa-solid fa-x'></i>
+                                <p>Erreur lors de l'ajout du devoir, veuillez rééssayer !</p>
+                            </section>";
                     }
                 }
             }
+            echo "<section class='passedMsg' id='passedMsg'>
+                <i class=' fa-solid fa-x'></i>
+                <p>Devoir ajouté avec succès !</p>
+            </section>";
         } else {
-            echo "Erreur lors de l'insertion des fichiers.";
+            echo "<script>console.log(mysqli_error($link))</script>";
+            echo "<section class='errorMsg' id='errorMsg'>
+                <i class=' fa-solid fa-x'></i>
+                <p>Erreur lors de l'ajout du devoir, veuillez rééssayer !</p>
+            </section>";
         }
     }
     // Fermeture de la connexion
@@ -99,16 +119,16 @@ function modifierDevoir()
     $date = mysqli_real_escape_string($link, $_POST['modifDate']);
     $type = mysqli_real_escape_string($link, $_POST['modifType']);
     $description = isset($_POST['modifDescription']) ? mysqli_real_escape_string($link, $_POST['modifDescription']) : 'NULL';
-    $coef = isset($_POST['modifCoef']) && $_POST['modifCoef'] !== '' ? (int)$_POST['modifCoef'] : NULL;
+    $coef = isset($_POST['modifCoef']) && $_POST['modifCoef'] !== '' ? (int)$_POST['modifCoef'] : 'NULL';
     $modifMat = isset($_POST['modifMat']) && $_POST['modifMat'] !== '' ? mysqli_real_escape_string($link, $_POST['modifMat']) : 'NULL';
-    $modifCoefMatier = isset($_POST['modifCoefMatier']) && $_POST['modifCoefMatier'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['modifCoefMatier']) . "'" : NULL;
+    $modifCoefMatier = isset($_POST['modifCoefMatier']) && $_POST['modifCoefMatier'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['modifCoefMatier']) . "'" : 'NULL';
     $idDevoir = isset($_POST['modifHidden']) && $_POST['modifHidden'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['modifHidden']) . "'" : 'NULL';
 
     if ($idDevoir != 'NULL') {
         $sqlUpdateDevoir = "UPDATE `devoirs` SET `titre` = '$title', `matiere` = '$matiere', `date` = '$date', `description` = '$description', `type` = '$type', `coefDevoir` = $coef WHERE `devoirs`.`idDevoir` = $idDevoir";
         $result = mysqli_query($link, $sqlUpdateDevoir);
 
-        $sqlUpdateCoeff = "UPDATE `coeffs` SET `competence` = '$modifMat', `coeff` = $modifCoefMatier WHERE `coeffs`.`idDevoir` = $idDevoir";
+        $sqlUpdateCoeff = "UPDATE `coeffs` SET `competence` = '$modifMat', `coeff` = $modifCoefMatier WHERE `coeffs`.`idDevoir` = $idDevoir;";
         $result2 = mysqli_query($link, $sqlUpdateCoeff);
 
         if ($result && $result2) {
@@ -120,21 +140,17 @@ function modifierDevoir()
                 $sqlCheckInfosBDD = "SELECT * FROM `fichiers` WHERE `idDevoir` = $idDevoir";
                 $resultCheckInfosBDD = mysqli_query($link, $sqlCheckInfosBDD);
                 if (!$resultCheckInfosBDD) {
-                    echo "Erreur lors de la récupération des anciens fichiers : " . mysqli_error($link);
-                } else {
-                    echo "Anciens fichiers récupérés avec succès.";
+                    echo "<script>console.log(mysqli_error($link))</script>";
+                    echo "<section class='errorMsg' id='errorMsg'>
+                        <i class=' fa-solid fa-x'></i>
+                        <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                    </section>";
                 }
-                echo mysqli_num_rows($resultCheckInfosBDD);
 
                 if (mysqli_num_rows($resultCheckInfosBDD) > 0) {
                     // Supprimez d'abord les anciens fichiers liés à ce devoir
                     $sqlDeleteOldFiles = "DELETE FROM `fichiers` WHERE `idDevoir` = $idDevoir";
                     $resultDelete = mysqli_query($link, $sqlDeleteOldFiles);
-                    if (!$resultDelete) {
-                        echo "Erreur lors de la suppression des anciens fichiers : " . mysqli_error($link);
-                    } else {
-                        echo "Anciens fichiers supprimés avec succès.";
-                    }
                     foreach ($_FILES['modifFile']['name'] as $index => $fileName) {
                         // Générer un nom de fichier unique
                         $uniqueFileName = uniqid() . "_" . mysqli_real_escape_string($link, $fileName);
@@ -143,26 +159,40 @@ function modifierDevoir()
                         // Vérifier si le fichier a été téléchargé avec succès
                         if (move_uploaded_file($_FILES['modifFile']['tmp_name'][$index], $targetPath)) {
                             // Insérer le nom du fichier dans la base de données avec le même ID de devoir
-                            $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir)";
+                            $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir);";
                             $result4 = mysqli_query($link, $sql4);
 
                             if (!$result4) {
-                                echo "Erreur lors de l'insertion du nom du fichier : " . mysqli_error($link);
+                                echo "<script>console.log(mysqli_error($link))</script>";
+                                echo "<section class='errorMsg' id='errorMsg'>
+                                        <i class=' fa-solid fa-x'></i>
+                                        <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                                    </section>";
                                 return;
                             } else {
-                                echo "Fichier ajouté avec succès.";
+                                echo "<section class='passedMsg' id='passedMsg'>
+                                        <i class=' fa-solid fa-x'></i>
+                                        <p>Devoir modifié avec succès !</p>
+                                    </section>";
                             }
                         } else {
                             // Gérer les erreurs d'upload
-                            echo "Erreur lors du téléchargement du fichier : " . $_FILES['modifFile']['error'][$index];
+                            echo "<script>console.log(mysqli_error($link))</script>";
+                            echo "<section class='errorMsg' id='errorMsg'>
+                                <i class=' fa-solid fa-x'></i>
+                                <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                            </section>";
                         }
                     }
+                    echo "<section class='passedMsg' id='passedMsg'>
+                            <i class=' fa-solid fa-x'></i>
+                            <p>Devoir ajouté avec succès !</p>
+                        </section>";
                 } else {
                     // Upload des fichiers transmis par le formulaire vers le serveur et la base de données
                     if (isset($_FILES['modifFile']) && !empty($_FILES['modifFile']['name'][0])) {
                         // Gérer les fichiers uploadés
-                        $uploadDirectory = "./fichiers/"; // Chemin du dossier où les fichiers seront enregistrés
-                        echo "Fichier ajouté avec succès.";
+                        $uploadDirectory = "./fichiers/";
                         foreach ($_FILES['modifFile']['name'] as $index => $fileName) {
                             // Générer un nom de fichier unique
                             $uniqueFileName = uniqid() . "_" . mysqli_real_escape_string($link, $fileName);
@@ -171,27 +201,46 @@ function modifierDevoir()
                             // Vérifier si le fichier a été téléchargé avec succès
                             if (move_uploaded_file($_FILES['modifFile']['tmp_name'][$index], $targetPath)) {
                                 // Insérer le nom du fichier dans la base de données avec le même ID de devoir
-                                $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir)";
+                                $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir);";
                                 $result4 = mysqli_query($link, $sql4);
 
                                 if (!$result4) {
-                                    echo "Erreur lors de l'insertion du nom du fichier : " . mysqli_error($link);
+                                    echo "<script>console.log(mysqli_error($link))</script>";
+                                    echo "<section class='errorMsg' id='errorMsg'>
+                                        <i class=' fa-solid fa-x'></i>
+                                        <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                                    </section>";
                                 } else {
-                                    echo "Fichier ajouté avec succès.";
+                                    echo "<section class='passedMsg' id='passedMsg'>
+                                            <i class=' fa-solid fa-x'></i>
+                                            <p>Devoir modifié avec succès !</p>
+                                        </section>";
                                 }
                             } else {
                                 // Gérer les erreurs d'upload
-                                echo "Erreur lors du téléchargement du fichier : " . $_FILES['modifFile']['error'][$index];
+                                echo "<script>console.log(mysqli_error($link))</script>";
+                                echo "<section class='errorMsg' id='errorMsg'>
+                                <i class=' fa-solid fa-x'></i>
+                                <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                            </section>";
                             }
                         }
                     }
                 }
             }
         } else {
-            echo "Erreur lors de la mise à jour du devoir : " . mysqli_error($link);
+            echo "<script>console.log(mysqli_error($link))</script>";
+            echo "<section class='errorMsg' id='errorMsg'>
+                <i class=' fa-solid fa-x'></i>
+                <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+            </section>";
         }
     } else {
-        echo "ID de devoir invalide.";
+        echo "<script>console.log(mysqli_error($link))</script>";
+        echo "<section class='errorMsg' id='errorMsg'>
+                <i class=' fa-solid fa-x'></i>
+                <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+            </section>";
     }
 
     mysqli_close($link);
@@ -293,19 +342,26 @@ function modifierDevoir()
                             // Vérifiez s'il y a des fichiers dans la réponse
                             if (response.fichiers.length > 0) {
                                 let fichiersHtml = '<ul>';
+                                let nomsDesFichiers = []; // Créez un tableau pour stocker les noms de fichiers
+
                                 response.fichiers.forEach(function(fichier) {
                                     // Utilisez une opération de découpage pour obtenir le nom du fichier
                                     let nomDuFichier = fichier.split('_')[1]; // Suppose que le nom du fichier est séparé par un "_"
                                     fichiersHtml += '<li><a href="fichiers/' + fichier + '" download>' + nomDuFichier + '</a></li>';
+
+                                    nomsDesFichiers.push(nomDuFichier); // Ajoutez le nom du fichier au tableau
                                 });
+
                                 fichiersHtml += '</ul>';
+
+                                // Joignez les noms de fichiers avec une virgule et ajoutez-les à #previousFile
                                 $('#fichierLink').html(fichiersHtml);
+                                $('#previousFile').html("Fichier(s) précédent(s) : " + nomsDesFichiers.join(', ') + "<br><br> <p>Si vous validez le formulaire, le fichier sera remplacé par le nouveau.</p>");
                             } else {
                                 $('#fichierLink').html("<p>Aucun fichier associé</p>");
                             }
 
                             // Reste du code pour mettre à jour les champs de formulaire
-                            $('#previousFile').html("Fichier précédent : " + response.fichiers + "<br> <p>Si vous validez le formulaire, le fichier sera remplacé par le nouveau.</p>");
                             $('input[name="modifTitle"]').val(response.titre);
                             $('select[name="modifMatiere"]').val(response.matiere);
                             $('input[name="modifDate"]').val(response.date);
@@ -354,7 +410,6 @@ function modifierDevoir()
                         <input type='hidden' name='devoirID' value='" . $row['idDevoir'] . "'>
                         <i class='fa-solid fa-check'></i>
                         <input type='submit' value='' name='done-checkbox' class='done-checkbox'>
-                        
                     </form>
                     <div class='firstColumn'>
                         <h2 class='title'>" . $row["titre"] . "</h2>
@@ -578,10 +633,10 @@ function modifierDevoir()
     <!-- Error Message -->
     <!-- Tu peux juste echo le message et l'animation s'enclanchera automatiquement -->
 
-    <section class="errorMsg" id="errorMsg">
+    <!-- <section class="errorMsg" id="errorMsg">
         <i class=" fa-solid fa-x"></i>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
-    </section>
+    </section> -->
     <script src="./js/main.js"></script>
 </body>
 
