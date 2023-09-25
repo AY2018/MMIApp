@@ -85,6 +85,28 @@
         <!-- Info content here -->
     </article>
 
+
+    <!------------ Supprimer devoir  ---------->
+    <article class="articleDelete addDevoir" id="articleDelete">
+        <form action="php/delete.php" method="post" class="deleteDevoir_form">
+            <p>Êtes-vous sûr de vouloir supprimer ce devoir ?</p>
+            <fieldset>
+                <div id="refreshLink" onclick="closeDlt()">Non</div>
+                <input type="hidden" id="hiddenSupprimerDevoir" name="hiddenSupprimerDevoir" value="">
+                <input type="submit" name="deleteSubmit" value="Supprimer">
+            </fieldset>
+            
+        </form>
+    </article>
+
+
+    <!-- Error Message -->
+
+    <section class="errorMsg" id="errorMsg">
+        <i class=" fa-solid fa-x"></i>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+    </section>
+
     <script>
         function check() {
             const button = document.getElementById('iDevoir');
@@ -96,7 +118,21 @@
             }
         }
 
+        
+
+
+    const deleteArticle = document.getElementById("articleDelete");
+
+        function openDlt() {
+            deleteArticle.style.display = "flex";
+        }
+
+        function closeDlt() {
+            deleteArticle.style.display = "none";
+            console.log('lol');
+        }
     </script>
+
 </body>
 
 </html>

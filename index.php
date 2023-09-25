@@ -1,8 +1,8 @@
 <?php session_start();
 
-if (!isset($_SESSION['isConnected']) || $_SESSION['isConnected'] == false) {
-    header('Location: ./php/login.php');
-}
+// if (!isset($_SESSION['isConnected']) || $_SESSION['isConnected'] == false) {
+//     header('Location: ./php/login.php');
+// }
 $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
 $sql = "SELECT * FROM `etudiants` WHERE `pseudo` = '" . $_SESSION['pseudo'] . "'";
 $result = mysqli_query($link, $sql);
@@ -532,7 +532,7 @@ function modifierDevoir()
     <article class="infoDevoir" id="infoDevoir">
         <section>
             <i class="fa-solid fa-pen-to-square btnModifDev" onclick="openModif()"></i>
-            <i id="trash-icon" class="fa-solid fa-trash trash-icon" style="color: #d71414;left: 20%; position: absolute"></i>
+            <i id="trash-icon" class="fa-solid fa-trash trash-icon" style="color: #d71414;left: 20%; position: absolute" onclick="openDlt()"></i>
             <i class="fa-solid fa-x" onclick="closeInfo()"></i>
             <h1>Détails</h1>
             <h2 id="titre"></h2>
@@ -562,15 +562,26 @@ function modifierDevoir()
     </article>
 
     <!------------ Supprimer devoir  ---------->
-    <article>
+    <article class="articleDelete addDevoir" id="articleDelete">
         <form action="php/delete.php" method="post" class="deleteDevoir_form">
-            <i class="fa-solid fa-x"></i>
             <p>Êtes-vous sûr de vouloir supprimer ce devoir ?</p>
-            <input type="hidden" id="hiddenSupprimerDevoir" name="hiddenSupprimerDevoir" value="">
-            <input type="submit" name="deleteSubmit" value="Supprimer">
+            <fieldset>
+                <div id="refreshLink" onclick="closeDlt()">Non</div>
+                <input type="hidden" id="hiddenSupprimerDevoir" name="hiddenSupprimerDevoir" value="">
+                <input type="submit" name="deleteSubmit" value="Supprimer">
+            </fieldset>
+
         </form>
     </article>
 
+
+    <!-- Error Message -->
+    <!-- Tu peux juste echo le message et l'animation s'enclanchera automatiquement -->
+
+    <section class="errorMsg" id="errorMsg">
+        <i class=" fa-solid fa-x"></i>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+    </section>
     <script src="./js/main.js"></script>
 </body>
 
