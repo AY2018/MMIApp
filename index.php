@@ -260,6 +260,7 @@ function modifierDevoir()
     <link rel="stylesheet" href="./styles/general.css">
     <link rel="stylesheet" href="./styles/home.css">
     <link rel="stylesheet" href="./styles/media.css">
+    <link rel="stylesheet" href="./styles/error.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>MMI Devoirs</title>
 </head>

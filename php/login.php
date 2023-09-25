@@ -122,6 +122,7 @@ if ($_POST["inscriptionSubmit"]) {
 
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/error.css">
     <title>MMI Devoirs - Log In</title>
 </head>
 

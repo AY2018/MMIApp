@@ -39,13 +39,14 @@ form fieldset div{
 }
 
 
+
 form fieldset div input, form select{
     border: none;
     background-color: #E7E7E7;
     padding: 15px 30px;
     width: 100%;
     border-radius: 25px;
-    color: #A5A5A5;
+    color: black;
 }
 
 
