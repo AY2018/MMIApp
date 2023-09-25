@@ -271,6 +271,9 @@ function modifierDevoir()
         <figure>
             <img src="./img/Group3.png" alt="">
         </figure>
+
+        <a href="#"><i class="fa-solid fa-right-from-bracket"></i></a>
+
     </header>
 
     <main>
