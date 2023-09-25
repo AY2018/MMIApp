@@ -272,7 +272,7 @@ function modifierDevoir()
             <img src="./img/Group3.png" alt="">
         </figure>
 
-        <a href="#"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <a href="./php/deconnexion.php"><i class="fa-solid fa-right-from-bracket"></i></a>
 
     </header>
 
@@ -594,8 +594,12 @@ function modifierDevoir()
     <!------------ Détails devoir  ---------->
     <article class="infoDevoir" id="infoDevoir">
         <section>
-            <i class="fa-solid fa-pen-to-square btnModifDev" onclick="openModif()"></i>
-            <i id="trash-icon" class="fa-solid fa-trash trash-icon" style="color: #d71414;left: 20%; position: absolute" onclick="openDlt()"></i>
+            <?php
+            if ($privilege == "admin") {
+                echo '<i class="fa-solid fa-pen-to-square btnModifDev" onclick="openModif()"></i>
+            <i id="trash-icon" class="fa-solid fa-trash trash-icon" style="color: #d71414;left: 20%; position: absolute" onclick="openDlt()"></i>';
+            }
+            ?>
             <i class="fa-solid fa-x" onclick="closeInfo()"></i>
             <h1>Détails</h1>
             <h2 id="titre"></h2>
