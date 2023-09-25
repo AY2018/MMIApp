@@ -25,7 +25,7 @@
             <h1>Devoirs</h1>
             <!-- Example button (you can change it according to your needs) -->
             <i class="fa-solid fa-plus btnAddDevoir" onclick="openAdd()"></i>
-            
+
             <style>
                 .session {
                     color: white;
@@ -54,8 +54,8 @@
         <article class="main_content">
             <ul>
                 <!-- Example list item (you can replicate it according to your needs) -->
-                <li>
-                    <form action='#' method='post'> 
+                <li class="">
+                    <form action='#' method='post'>
                         <input type='hidden' name='devoirID' value='ExampleValue'>
                         <input type='submit' name='done-checkbox' class='done-checkbox' value="">
                         <i class="fa-solid fa-check"></i>
@@ -87,15 +87,16 @@
 
     <script>
         function check() {
-    const button = document.getElementById('iDevoir');
+            const button = document.getElementById('iDevoir');
 
-    if (button.classList.contains('checked')) {
-        button.classList.remove('checked');
-    } else {
-        button.classList.add('checked');
-    }
-}
+            if (button.classList.contains('checked')) {
+                button.classList.remove('checked');
+            } else {
+                button.classList.add('checked');
+            }
+        }
 
     </script>
 </body>
+
 </html>

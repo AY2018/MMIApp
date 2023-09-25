@@ -19,86 +19,183 @@ function ajoutDevoir()
 {
     // Vérification de la connexion à la base de données
     $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
-    if (!$link) {
-        die("Erreur de connexion à la base de données : " . mysqli_connect_error());
-    }
-
-    // Vérification des données POST
-    if (empty($_POST['ajoutTitle']) || empty($_POST['ajoutMatiere']) || empty($_POST['ajoutDate']) || empty($_POST['ajoutDescription']) || empty($_POST['ajoutType'])) {
-        die("Tous les champs sont obligatoires.");
-    }
 
     // Utilisation de requêtes préparées pour éviter les injections SQL
     $title = mysqli_real_escape_string($link, $_POST['ajoutTitle']);
     $matiere = mysqli_real_escape_string($link, $_POST['ajoutMatiere']);
     $date = mysqli_real_escape_string($link, $_POST['ajoutDate']);
-    $description = isset($_POST['ajoutDescription']) ? mysqli_real_escape_string($link, $_POST['ajoutDescription']) : 'null'; // Vérifiez si le champ description est renseigné
     $type = mysqli_real_escape_string($link, $_POST['ajoutType']);
-    $coef = isset($_POST['ajoutCoef']) ? mysqli_real_escape_string($link, $_POST['ajoutCoef']) : 'null'; // Vérifiez si le champ coef est renseigné
-    $coefMat = isset($_POST['ajoutCoefMat']) ? mysqli_real_escape_string($link, $_POST['ajoutCoefMat']) : 'null'; // Vérifiez si le champ coefMat est renseigné
-    $coefMatValue = isset($_POST['ajoutCoefMatValue']) ? mysqli_real_escape_string($link, $_POST['ajoutCoefMatValue']) : 'null'; // Vérifiez si le champ coefMatValue est renseigné
+    $description = isset($_POST['ajoutDescription']) ? "'" . mysqli_real_escape_string($link, $_POST['ajoutDescription']) . "'" : 'NULL';
+    $coef = isset($_POST['ajoutCoef']) && $_POST['ajoutCoef'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoef']) . "'" : 'NULL';
+    $coefMat = isset($_POST['ajoutCoefMat']) && $_POST['ajoutCoefMat'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoefMat']) . "'" : 'NULL';
+    $coefMatValue = isset($_POST['ajoutCoefMatValue']) && $_POST['ajoutCoefMatValue'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoefMatValue']) . "'" : 'NULL';
 
-    $CheckInfos = "SELECT * FROM `devoirs` WHERE `titre` = '$title' AND `matiere` = '$matiere' AND `date` = '$date' AND `description` = '$description' AND `type` = '$type' AND `coefDevoir` = $coef AND `idEtudiant` = '" . $_SESSION['id'] . "'";
+
+    $CheckInfos = "SELECT * FROM `devoirs` WHERE `titre` = '$title' AND `matiere` = '$matiere' AND `date` = '$date' AND `type` = '$type'";
     $CheckInfosQuery = mysqli_query($link, $CheckInfos);
+
+
+    // gerer l'erreur de la requete sql
     if (mysqli_num_rows($CheckInfosQuery) > 0) {
-        die("Ce devoir existe déjà.");
+        echo "Ce devoir existe déjà !";
     } else {
-        // Insertion du devoir
         $sql = "INSERT INTO `devoirs` (`titre`, `matiere`, `date`, `description`, `type`, `coefDevoir`, `idEtudiant`)
-            VALUES ('$title', '$matiere', '$date', '$description', '$type', $coef, '" . $_SESSION['id'] . "')";
+        SELECT '$title', '$matiere', '$date', $description, '$type', $coef, '" . $_SESSION['id'] . "'
+        FROM DUAL
+        WHERE NOT EXISTS (
+            SELECT 1
+            FROM `devoirs`
+            WHERE `titre` = '$title' AND `matiere` = '$matiere' AND `date` = '$date' AND `description` = '$description' AND `type` = '$type' AND `coefDevoir` = $coef
+        )";
         $result = mysqli_query($link, $sql);
 
-        if ($result) {
-            // Récupération de l'ID du devoir inséré
-            $idDevoir = mysqli_insert_id($link);
+        $idDevoir = mysqli_insert_id($link);
+        $sql2 = "INSERT INTO coeffs (`competence`, `coeff`, `idDevoir`) VALUES ($coefMat, $coefMatValue, $idDevoir)";
+        $result2 = mysqli_query($link, $sql2);
 
-            // Insertion des coefficients s'ils sont renseignés
-            $sql2 = "INSERT INTO coeffs (`competence`, `coeff`, `idDevoir`) VALUES ('$coefMat', $coefMatValue, $idDevoir)";
-            $result2 = mysqli_query($link, $sql2);
+        if ($result2 && $result) {
+            // Upload des fichiers transmis par le formulaire vers le serveur et la base de données
+            if (isset($_FILES['ajoutFile']) && !empty($_FILES['ajoutFile']['name'][0])) {
+                // Gérer les fichiers uploadés
+                $uploadDirectory = "./fichiers/"; // Chemin du dossier où les fichiers seront enregistrés
 
-            if ($result2) {
-                // Upload des fichiers transmis par le formulaire vers le serveur et la base de données
-                if (isset($_FILES['ajoutFile']) && !empty($_FILES['ajoutFile']['name'][0])) {
-                    // Gérer les fichiers uploadés
-                    $uploadDirectory = "./fichiers/"; // Chemin du dossier où les fichiers seront enregistrés
+                foreach ($_FILES['ajoutFile']['name'] as $index => $fileName) {
+                    // Générer un nom de fichier unique
+                    $uniqueFileName = uniqid() . "_" . $fileName;
+                    $targetPath = $uploadDirectory . $uniqueFileName;
 
-                    foreach ($_FILES['ajoutFile']['name'] as $index => $fileName) {
-                        // Générer un nom de fichier unique
-                        $uniqueFileName = uniqid() . "_" . $fileName;
-                        $targetPath = $uploadDirectory . $uniqueFileName;
+                    // Vérifier si le fichier a été téléchargé avec succès
+                    if (move_uploaded_file($_FILES['ajoutFile']['tmp_name'][$index], $targetPath)) {
+                        // Insérer le nom du fichier dans la base de données avec le même ID de devoir
+                        $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir)";
+                        $result4 = mysqli_query($link, $sql4);
 
-                        // Vérifier si le fichier a été téléchargé avec succès
-                        if (move_uploaded_file($_FILES['ajoutFile']['tmp_name'][$index], $targetPath)) {
-                            // Insérer le nom du fichier dans la base de données avec le même ID de devoir
-                            $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir)";
-                            $result4 = mysqli_query($link, $sql4);
-
-
-                            // if (!$result4) {
-                            //     echo "Erreur lors de l'insertion du nom du fichier : " . mysqli_error($link);
-                            // }
+                        if (!$result4) {
+                            echo "Erreur lors de l'insertion du nom du fichier : " . mysqli_error($link);
                         }
-                        // else {
-                        //     // Gérer les erreurs d'upload
-                        //     echo "Erreur lors du téléchargement du fichier : " . $_FILES['ajoutFile']['error'][$index];
-                        // }
+                    } else {
+                        // Gérer les erreurs d'upload
+                        echo "Erreur lors du téléchargement du fichier : " . $_FILES['ajoutFile']['error'][$index];
                     }
                 }
-                // else {
-                //     echo "Aucun fichier n'a été téléchargé.";
-                // }
-                echo "<script>location.reload();</script>";
-            } else {
-                echo "Erreur lors de l'insertion des coefficients.";
             }
         } else {
-            echo "Erreur lors de l'insertion du devoir : " . mysqli_error($link);
+            echo "Erreur lors de l'insertion des fichiers.";
         }
     }
     // Fermeture de la connexion
     mysqli_close($link);
 }
 
+
+function modifierDevoir()
+{
+    // Vérification de la connexion à la base de données
+    $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
+
+    // Utilisation de requêtes préparées pour éviter les injections SQL
+    $title = mysqli_real_escape_string($link, $_POST['modifTitle']);
+    $matiere = mysqli_real_escape_string($link, $_POST['modifMatiere']);
+    $date = mysqli_real_escape_string($link, $_POST['modifDate']);
+    $type = mysqli_real_escape_string($link, $_POST['modifType']);
+    $description = isset($_POST['modifDescription']) ? mysqli_real_escape_string($link, $_POST['modifDescription']) : 'NULL';
+    $coef = isset($_POST['modifCoef']) && $_POST['modifCoef'] !== '' ? (int)$_POST['modifCoef'] : NULL;
+    $modifMat = isset($_POST['modifMat']) && $_POST['modifMat'] !== '' ? mysqli_real_escape_string($link, $_POST['modifMat']) : 'NULL';
+    $modifCoefMatier = isset($_POST['modifCoefMatier']) && $_POST['modifCoefMatier'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['modifCoefMatier']) . "'" : NULL;
+    $idDevoir = isset($_POST['modifHidden']) && $_POST['modifHidden'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['modifHidden']) . "'" : 'NULL';
+
+    if ($idDevoir != 'NULL') {
+        $sqlUpdateDevoir = "UPDATE `devoirs` SET `titre` = '$title', `matiere` = '$matiere', `date` = '$date', `description` = '$description', `type` = '$type', `coefDevoir` = $coef WHERE `devoirs`.`idDevoir` = $idDevoir";
+        $result = mysqli_query($link, $sqlUpdateDevoir);
+
+        $sqlUpdateCoeff = "UPDATE `coeffs` SET `competence` = '$modifMat', `coeff` = $modifCoefMatier WHERE `coeffs`.`idDevoir` = $idDevoir";
+        $result2 = mysqli_query($link, $sqlUpdateCoeff);
+
+        if ($result && $result2) {
+            // Vérifiez s'il y a des nouveaux fichiers téléchargés
+            if (isset($_FILES['modifFile']) && !empty($_FILES['modifFile']['name'][0])) {
+
+                // Gérer les fichiers uploadés
+                $uploadDirectory = "./fichiers/"; // Chemin du dossier où les fichiers seront enregistrés
+                $sqlCheckInfosBDD = "SELECT * FROM `fichiers` WHERE `idDevoir` = $idDevoir";
+                $resultCheckInfosBDD = mysqli_query($link, $sqlCheckInfosBDD);
+                if (!$resultCheckInfosBDD) {
+                    echo "Erreur lors de la récupération des anciens fichiers : " . mysqli_error($link);
+                } else {
+                    echo "Anciens fichiers récupérés avec succès.";
+                }
+                echo mysqli_num_rows($resultCheckInfosBDD);
+
+                if (mysqli_num_rows($resultCheckInfosBDD) > 0) {
+                    // Supprimez d'abord les anciens fichiers liés à ce devoir
+                    $sqlDeleteOldFiles = "DELETE FROM `fichiers` WHERE `idDevoir` = $idDevoir";
+                    $resultDelete = mysqli_query($link, $sqlDeleteOldFiles);
+                    if (!$resultDelete) {
+                        echo "Erreur lors de la suppression des anciens fichiers : " . mysqli_error($link);
+                    } else {
+                        echo "Anciens fichiers supprimés avec succès.";
+                    }
+                    foreach ($_FILES['modifFile']['name'] as $index => $fileName) {
+                        // Générer un nom de fichier unique
+                        $uniqueFileName = uniqid() . "_" . mysqli_real_escape_string($link, $fileName);
+                        $targetPath = $uploadDirectory . $uniqueFileName;
+
+                        // Vérifier si le fichier a été téléchargé avec succès
+                        if (move_uploaded_file($_FILES['modifFile']['tmp_name'][$index], $targetPath)) {
+                            // Insérer le nom du fichier dans la base de données avec le même ID de devoir
+                            $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir)";
+                            $result4 = mysqli_query($link, $sql4);
+
+                            if (!$result4) {
+                                echo "Erreur lors de l'insertion du nom du fichier : " . mysqli_error($link);
+                                return;
+                            } else {
+                                echo "Fichier ajouté avec succès.";
+                            }
+                        } else {
+                            // Gérer les erreurs d'upload
+                            echo "Erreur lors du téléchargement du fichier : " . $_FILES['modifFile']['error'][$index];
+                        }
+                    }
+                } else {
+                    // Upload des fichiers transmis par le formulaire vers le serveur et la base de données
+                    if (isset($_FILES['modifFile']) && !empty($_FILES['modifFile']['name'][0])) {
+                        // Gérer les fichiers uploadés
+                        $uploadDirectory = "./fichiers/"; // Chemin du dossier où les fichiers seront enregistrés
+                        echo "Fichier ajouté avec succès.";
+                        foreach ($_FILES['modifFile']['name'] as $index => $fileName) {
+                            // Générer un nom de fichier unique
+                            $uniqueFileName = uniqid() . "_" . mysqli_real_escape_string($link, $fileName);
+                            $targetPath = $uploadDirectory . $uniqueFileName;
+
+                            // Vérifier si le fichier a été téléchargé avec succès
+                            if (move_uploaded_file($_FILES['modifFile']['tmp_name'][$index], $targetPath)) {
+                                // Insérer le nom du fichier dans la base de données avec le même ID de devoir
+                                $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir)";
+                                $result4 = mysqli_query($link, $sql4);
+
+                                if (!$result4) {
+                                    echo "Erreur lors de l'insertion du nom du fichier : " . mysqli_error($link);
+                                } else {
+                                    echo "Fichier ajouté avec succès.";
+                                }
+                            } else {
+                                // Gérer les erreurs d'upload
+                                echo "Erreur lors du téléchargement du fichier : " . $_FILES['modifFile']['error'][$index];
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            echo "Erreur lors de la mise à jour du devoir : " . mysqli_error($link);
+        }
+    } else {
+        echo "ID de devoir invalide.";
+    }
+
+    mysqli_close($link);
+}
 
 
 
@@ -111,12 +208,10 @@ function ajoutDevoir()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
     <link rel="stylesheet" href="./styles/general.css">
     <link rel="stylesheet" href="./styles/home.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>MMI Devoirs</title>
 </head>
 
@@ -166,28 +261,72 @@ function ajoutDevoir()
                 </div>
             </div>
         </section>
-
         <script>
-            //Utilisez jQuery pour écouter les clics sur les checkboxes
-            // $(document).ready(function() {
-            //     $('#iDevoir').click(function() {
-            //         var devoirID = document.getElementById('iDevoir').getAttribute('data-iddevoir');
+            $(document).ready(function() {
+                $('.iDevoir').click(function() {
+                    var devoirID = $(this).data('iddevoir');
 
-            //         // Envoyez une requête AJAX au script PHP pour mettre à jour la base de données
-            //         $.ajax({
-            //             url: 'index.php', // Le nom de ce fichier
-            //             method: 'POST',
-            //             data: {
-            //                 devoirID: devoirID
-            //             },
-            //             success: function(response) {},
-            //             error: function(error) {
-            //                 alert('Erreur lors de la mise à jour du devoir : ' + error);
-            //             }
-            //         });
-            //     });
-            // });
+                    // Envoyez une requête AJAX au script PHP pour obtenir les détails du devoir
+                    $.ajax({
+                        url: 'php/id.php',
+                        method: 'POST',
+                        data: {
+                            devoirID: devoirID
+                        },
+                        dataType: 'json', // Indiquez que vous attendez une réponse JSON
+                        success: function(response) {
+                            console.log(response);
+                            if (response.description == "") {
+                                $('#showDesc').html("<p>Aucune description pour ce devoir.</p>");
+                            } else {
+                                $('#showDesc').text(response.description);
+                            }
+
+                            $('#showType').text(response.type);
+                            $('#showCoeff').text("coef. " + response.coefDevoir);
+                            $('#showCompetence').text(response.competence);
+                            $('#showCoefCompetence').text("coef. " + response.coeffCompetence);
+                            $('#titre').text(response.titre);
+                            // $('#trash-icon').data('iddevoir', response.id);
+                            $('#infoDevoir').css('display', 'flex');
+
+                            // Vérifiez s'il y a des fichiers dans la réponse
+                            if (response.fichiers.length > 0) {
+                                let fichiersHtml = '<ul>';
+                                response.fichiers.forEach(function(fichier) {
+                                    // Utilisez une opération de découpage pour obtenir le nom du fichier
+                                    let nomDuFichier = fichier.split('_')[1]; // Suppose que le nom du fichier est séparé par un "_"
+                                    fichiersHtml += '<li><a href="fichiers/' + fichier + '" download>' + nomDuFichier + '</a></li>';
+                                });
+                                fichiersHtml += '</ul>';
+                                $('#fichierLink').html(fichiersHtml);
+                            } else {
+                                $('#fichierLink').html("<p>Aucun fichier associé</p>");
+                            }
+
+                            // Reste du code pour mettre à jour les champs de formulaire
+                            $('#previousFile').html("Fichier précédent : " + response.fichiers + "<br> <p>Si vous validez le formulaire, le fichier sera remplacé par le nouveau.</p>");
+                            $('input[name="modifTitle"]').val(response.titre);
+                            $('select[name="modifMatiere"]').val(response.matiere);
+                            $('input[name="modifDate"]').val(response.date);
+                            $('textarea[name="modifDescription"]').val(response.description);
+                            $('select[name="modifType"]').val(response.type);
+                            $('input[name="modifCoef"]').val(response.coefDevoir);
+                            $('select[name="modifMat"]').val(response.competence);
+                            $('input[name="modifCoefMatier"]').val(response.coeffCompetence);
+                            $('input[name="modifHidden"]').val(response.id);
+
+
+                            $('#hiddenSupprimerDevoir').val(response.id);
+                        },
+                        error: function(error) {
+                            console.log('Erreur lors de la récupération des détails du devoir : ' + error.responseText);
+                        }
+                    });
+                });
+            });
         </script>
+
 
         <h1 id="currentDate"></h1>
         <!------------ Contenu principal Start ---------->
@@ -213,8 +352,9 @@ function ajoutDevoir()
                     echo $li . "
                     <form action='php/update_devoir.php' method='post'> 
                         <input type='hidden' name='devoirID' value='" . $row['idDevoir'] . "'>
-                        <input type='submit' name='done-checkbox' class='done-checkbox'>
                         <i class='fa-solid fa-check'></i>
+                        <input type='submit' value='' name='done-checkbox' class='done-checkbox'>
+                        
                     </form>
                     <div class='firstColumn'>
                         <h2 class='title'>" . $row["titre"] . "</h2>
@@ -222,7 +362,7 @@ function ajoutDevoir()
                     </div>
                     <div class='secondColumn'>
                         <p class='date'>" . $date . "</p>
-                        <button id='iDevoir' class='fa-solid fa-circle-info' onclick='openInfo(" . $row['idDevoir'] . ")'></button>
+                        <button id='iDevoir' class='fa-solid fa-circle-info iDevoir' data-iddevoir='" . $row['idDevoir'] . "'></button>
                     </div>
                 </li>";
                 }
@@ -230,9 +370,10 @@ function ajoutDevoir()
             </ul>
         </article>
     </main>
+    <!-- <button id='iDevoir' class='fa-solid fa-circle-info' onclick='openInfo(" . $row[' idDevoir'] . ")'></button> -->
 
     <!------------ Ajouter formulaire  ---------->
-    <article class="addDevoir" id="addForm">
+    <article class=" addDevoir" id="addForm">
         <form action="index.php" method="post" class="addDevoir_form" enctype="multipart/form-data">
             <i class=" fa-solid fa-x" onclick="closeAdd()"></i>
             <h1>Nouveau devoir</h1>
@@ -265,7 +406,7 @@ function ajoutDevoir()
             <input id="date" type="date" name="ajoutDate" class="inputDate" required>
 
             <label for="description">Description <span>*</span></label>
-            <textarea maxlength="255" name="ajoutDescription" id="description" cols="30" rows="5" placeholder="Ajouter une description ..." required></textarea>
+            <textarea maxlength="255" name="ajoutDescription" id="description" cols="30" rows="5" placeholder="Ajouter une description ..."></textarea>
 
             <label for="type">Type <span>*</span></label>
             <fieldset>
@@ -279,7 +420,7 @@ function ajoutDevoir()
                 </select>
 
                 <label for="coef" class="coefLabel">coef. <span>*</span></label>
-                <input id="coef" required type="number" name="ajoutCoef">
+                <input id="coef" type="number" name="ajoutCoef">
             </fieldset>
 
             <label for="file[]">Fichiers</label>
@@ -287,7 +428,7 @@ function ajoutDevoir()
 
             <label for="coefMatier">Coef. de la matière dans la compétence <span>*</span></label>
             <fieldset>
-                <select id="coefMatier" required name="ajoutCoefMat">
+                <select id="coefMatier" name="ajoutCoefMat">
                     <option selected value=""></option>
                     <option value="Comprendre">Comprendre</option>
                     <option value="Developper">Developper</option>
@@ -296,41 +437,57 @@ function ajoutDevoir()
                     <option value="Entreprendre">Entreprendre</option>
                 </select>
 
-                <input name="ajoutCoefMatValue" required type="number" class="coefLabel">
+                <input name="ajoutCoefMatValue" type="number" class="coefLabel">
             </fieldset>
 
             <input type="submit" name="ajoutSubmit" value="Ajouter">
         </form>
-        <?php if (isset($_POST['ajoutSubmit'])) {
-            ajoutDevoir();
-        } ?>
     </article>
+    <?php if (isset($_POST['ajoutSubmit'])) {
+
+        ajoutDevoir();
+    } ?>
+
 
     <!------------ Modifier formulaire  ---------->
     <article class="addDevoir" id="modifForm">
-        <form action="" class="addDevoir_form">
-            <i class="fa-solid fa-x" onclick="closeModif()"></i>
+        <form action="index.php" method="post" class="addDevoir_form" enctype="multipart/form-data">
+            <i class=" fa-solid fa-x" onclick="closeModif()"></i>
             <h1>Modifier devoir</h1>
 
             <label for="title">Titre <span>*</span></label>
-            <input type="text" name="title" placeholder="Titre du devoir ..." required>
+            <input type="text" name="modifTitle" placeholder="Titre du devoir ..." required>
 
             <label for="matiere">Matière <span>*</span></label>
-            <select name="matiere" id="" required>
-                <option value="">MM2R03 Ergonomie & Accessibilité</option>
-                <option value="">MM2R03 Ergonomie & Accessibilité</option>
-                <option value="">MM2R03 Ergonomie & Accessibilité</option>
+            <select id="matiere" name="modifMatiere" required>
+                <option selected value=""></option>
+                <option>MM2R03 Ergonomie & Accessibilité</option>
+                <option>MM2R04 Culture Numérique</option>
+                <option>MM2R16 Représentation et traitement de l'information</option>
+                <option>MM2R05 Stratégie de communication</option>
+                <option>MM2R06 Expression, communication et rhétorique</option>
+                <option>MM2R07 Écriture multimédia et narration</option>
+                <option>MM2R08 Production graphique</option>
+                <option>MM2R09 Culture artistique</option>
+                <option>MM2R10 Production audio & vidéo</option>
+                <option>MM2R11 Gestion de contenus</option>
+                <option>MM2R12 Intégration</option>
+                <option>MM2R13 Développement Web</option>
+                <option>MM2R14 Système d'information</option>
+                <option>MM2R17 Gestion de projet</option>
+                <option>MM2R18 Economie et Droit du numérique</option>
+                <option>MM2R19 Projet Personnel et Professionnel</option>
             </select>
 
             <label for="date">Date <span>*</span></label>
-            <input type="date" name="date" class="inputDate" required>
+            <input type="date" name="modifDate" class="inputDate" required>
 
             <label for="description">Description</label>
-            <textarea required name="description" id="" cols="30" rows="5" placeholder="Ajouter une description ..."></textarea>
+            <textarea name="modifDescription" id="" cols="30" rows="5" placeholder="Ajouter une description ..."></textarea>
 
             <label for="type">Type <span>*</span></label>
             <fieldset>
-                <select required name="type">
+                <select id="type" required name="modifType">
                     <option selected></option>
                     <option>DS</option>
                     <option>TP</option>
@@ -340,94 +497,78 @@ function ajoutDevoir()
                 </select>
 
                 <label for="coef" class="coefLabel">coef.</label>
-                <input type="number" required name="coef">
+                <input type="number" name="modifCoef">
             </fieldset>
 
-            <label for="file[]">Fichiers</label>
-            <input type="file" multiple accept="*/*" name="file[]">
+            <label for="modifFile[]">Fichiers</label>
+            <input type="file" multiple accept="*/*" name="modifFile[]">
+            <div id="previousFile"></div>
+
 
             <label for="coefMatier">Coef. de la matière dans la compétence</label>
             <fieldset>
-                <select required>
-                    <option selected>C1</option>
-                    <option>C2</option>
-                    <option>C3</option>
-                    <option>C4</option>
-                    <option>C5</option>
+                <select id="coefMatier" name="modifMat">
+                    <option selected></option>
+                    <option value="Comprendre">Comprendre</option>
+                    <option value="Developper">Developper</option>
+                    <option value="Exprimer">Exprimer</option>
+                    <option value="Concevoir">Concevoir</option>
+                    <option value="Entreprendre">Entreprendre</option>
                 </select>
 
-                <input type="number" required class="coefLabel">
+                <input name="modifCoefMatier" type="number" class="coefLabel">
             </fieldset>
 
-            <input type="submit" value="Modifier">
+            <input type="hidden" name="modifHidden">
+            <input name="modifSubmit" type="submit" value="Modifier">
         </form>
     </article>
 
+    <?php if (isset($_POST['modifSubmit'])) {
+        modifierDevoir();
+    } ?>
+
+    <!------------ Détails devoir  ---------->
     <article class="infoDevoir" id="infoDevoir">
         <section>
-
-            <?php
-            // // Vérifier si c'est une requête AJAX
-            // if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            //     // C'est une requête AJAX
-            //     if (isset($_GET['idDevoir'])) {
-            //         $idDevoir = $_GET['idDevoir'];
-            //         // Faites ce que vous voulez avec l'ID du devoir ici
-            //         echo "L'ID du devoir est : " . $idDevoir;
-            //     } else {
-            //         echo "L'ID du devoir n'a pas été spécifié dans la requête AJAX.";
-            //     }
-            // } else {
-            //     // Ce n'est pas une requête AJAX, vous pouvez gérer cela différemment si nécessaire
-            //     echo "Requête HTTP normale.";
-            // }
-            ?>
-
-            <div id="resultat"></div>
-
-
-
             <i class="fa-solid fa-pen-to-square btnModifDev" onclick="openModif()"></i>
+            <i id="trash-icon" class="fa-solid fa-trash trash-icon" style="color: #d71414;left: 20%; position: absolute"></i>
             <i class="fa-solid fa-x" onclick="closeInfo()"></i>
             <h1>Détails</h1>
-            <?php
-            // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //     // Récupérer les données envoyées par AJAX
-            //     $data = $_POST['data'];
-            //     $idDevoir = $data['idDevoir'];
-            //     $idD = $_POST['idDevoir'];
-            //     echo $idDevoir . " " . $idD . " " . $data;
-            // } else {
-            //     echo "Erreur lors de la récupération des données.";
-            // }
-            if ($id_devoir = $_COOKIE['id']) {
-                $id_devoir = $_COOKIE['id'];
-            } else {
-                echo "Erreur lors de la récupération des données.";
-            }
-            echo $id_devoir;
-            ?>
+            <h2 id="titre"></h2>
+
             <h2>Description</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ipsa qui natus distinctio doloremque
-                voluptas quidem, dolore temporibus delectus! Hic, tempore iure in sit voluptas repellat rem maiores
-                aspernatur ut.</p>
+            <p id="showDesc"></p>
 
             <h2>Type</h2>
             <div class="row">
-                <p>DS</p>
-                <span>coef. 2</span>
+                <p id="showType"></p>
+                <span id="showCoeff"></span>
             </div>
 
             <h2>Fichiers</h2>
-            <a href="#">fichier.pdf</a>
+            <div id="fichierLink">
+                <a download href="#"></a>
+            </div>
+
 
             <h2>Coeff matière</h2>
             <div class="row">
-                <p>C1 - Comprendre</p>
-                <span>coef. 15</span>
+                <p id="showCompetence"></p>
+                <span id="showCoefCompetence"></span>
             </div>
         </section>
 
+    </article>
+
+    <!------------ Supprimer devoir  ---------->
+    <article>
+        <form action="php/delete.php" method="post" class="deleteDevoir_form">
+            <i class="fa-solid fa-x"></i>
+            <p>Êtes-vous sûr de vouloir supprimer ce devoir ?</p>
+            <input type="hidden" id="hiddenSupprimerDevoir" name="hiddenSupprimerDevoir" value="">
+            <input type="submit" name="deleteSubmit" value="Supprimer">
+        </form>
     </article>
 
     <script src="./js/main.js"></script>

@@ -1,4 +1,4 @@
-main{
+main {
     padding: 0 5%;
     display: flex;
     flex-direction: column;
@@ -20,7 +20,7 @@ main{
     font-size: 2rem;
 }
 
-.heading .fa-plus{
+.heading .fa-plus {
     background-color: white;
     padding: 3px 6px;
     border-radius: 2px;
@@ -30,13 +30,13 @@ main{
 
 /* Sub-Heading */
 
-.sub_heading{
+.sub_heading {
     display: flex;
     align-items: center;
     gap: 30px;
 }
 
-.sub_heading select{
+.sub_heading select {
     background-color: #EDEDED;
     color: #424242;
     text-align: center;
@@ -47,7 +47,7 @@ main{
 
 /* Bouton Toggle */
 
-.row_type_done{
+.row_type_done {
     font-size: 0.5rem;
     display: flex;
     align-items: center;
@@ -57,46 +57,46 @@ main{
 
 
 .row_type_done input {
-	display : none;
+    display: none;
 }
 
 .row_type_done div label {
-	position: relative;
-	cursor: pointer;
-	display :block;
-	width: 40px;
-	height: 20px;
-	background: white;
-	border-radius: 50px;
-	transition: 100ms linear;
+    position: relative;
+    cursor: pointer;
+    display: block;
+    width: 40px;
+    height: 20px;
+    background: white;
+    border-radius: 50px;
+    transition: 100ms linear;
 }
 
 .row_type_done div label:before {
-	position: absolute;
-	top: 50%;
-	left: 2px;
-	transform: translateY(-50%);
-	content: "";
-	display: block;
-	width: 15px;
-	height: 15px;
-	background: #53256E;
-	border-radius: 50%;
-	transition: left 100ms linear;
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: #53256E;
+    border-radius: 50%;
+    transition: left 100ms linear;
 }
 
-.row_type_done div input:checked + label {
-	background: black;
+.row_type_done div input:checked+label {
+    background: black;
 }
 
-.row_type_done div input:checked + label:before {
-	left: 23px;
+.row_type_done div input:checked+label:before {
+    left: 23px;
 }
 
 
 /* Date */
 
-#currentDate{
+#currentDate {
     color: white;
     font-size: 1.5rem;
     font-weight: 400;
@@ -105,7 +105,7 @@ main{
 
 /* Main Content */
 
-.main_content{
+.main_content {
     background-color: white;
     border-radius: 15px;
     overflow-y: auto;
@@ -120,23 +120,23 @@ ul {
     height: 100%;
 }
 
-ul li{
+ul li {
     display: flex;
     gap: 20px;
 }
 
 /* First Column */
 
-ul li .firstColumn{
+ul li .firstColumn {
     width: 80%;
 }
 
-ul li .title{
+ul li .title {
     font-size: 1rem;
     font-weight: 400;
 }
 
-ul li .matiere{
+ul li .matiere {
     font-size: 0.8rem;
     color: #A6A6A6;
 }
@@ -144,18 +144,18 @@ ul li .matiere{
 
 /* Second Column */
 
-ul li .secondColumn{
+ul li .secondColumn {
     width: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-ul li .date{
+ul li .date {
     color: red;
 }
 
-ul li .fa-circle-info{
+ul li .fa-circle-info {
     color: #53256E;
 }
 
@@ -167,15 +167,15 @@ ul li.done {
     align-items: center;
 }
 
-ul li.done .title{
-    text-decoration:line-through;
+ul li.done .title {
+    text-decoration: line-through;
 }
 
-ul li.done .date{
+ul li.done .date {
     color: green;
 }
 
-ul li.done .firstColumn{
+ul li.done .firstColumn {
     text-align: center;
 }
 
@@ -202,7 +202,7 @@ ul li form .fa-check:before {
 
 /* Style when the button is "checked" */
 
-ul li form{
+ul li form {
     position: relative;
 }
 
@@ -217,7 +217,7 @@ ul li .done-checkbox {
 }
 
 
-ul li form .fa-check:before{
+ul li form .fa-check:before {
     position: absolute;
     color: #53256E;
     position: absolute;
@@ -225,15 +225,15 @@ ul li form .fa-check:before{
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
-    
+
 }
 
-ul li.done form .fa-check:before{
+ul li.done form .fa-check:before {
     opacity: 1;
-    
+
 }
 
-#iDevoir{
+#iDevoir {
     border: none;
     font-size: 1rem;
     cursor: pointer;
@@ -243,7 +243,7 @@ ul li.done form .fa-check:before{
 /*** Add Devoir ***/
 
 
-.addDevoir{
+.addDevoir {
     position: absolute;
     z-index: 10;
     backdrop-filter: blur(8px) brightness(0.8);
@@ -260,12 +260,12 @@ ul li.done form .fa-check:before{
 }
 
 @keyframes fadeIn {
-    to{
+    to {
         opacity: 1;
     }
 }
 
-.addDevoir form{
+.addDevoir form {
     background-color: white;
     border-radius: 15px;
     padding: 30px 40px;
@@ -276,26 +276,26 @@ ul li.done form .fa-check:before{
     gap: 20px;
 }
 
-.addDevoir h1{
+.addDevoir h1 {
     text-align: center;
     font-size: 2rem;
 }
 
-.addDevoir .fa-x{
+.addDevoir .fa-x {
     position: absolute;
     right: 10%;
 }
 
-.addDevoir span{
+.addDevoir span {
     color: red;
 }
 
-.addDevoir fieldset{
+.addDevoir fieldset {
     border: none;
 }
 
 
-.addDevoir select{
+.addDevoir select {
     background-color: #53256E;
     color: white;
     padding: 6px;
@@ -303,7 +303,8 @@ ul li.done form .fa-check:before{
     border-radius: 5px;
 }
 
-.addDevoir input, .addDevoir textarea{
+.addDevoir input,
+.addDevoir textarea {
     font-family: 'Inter', sans-serif;
     padding: 6px;
     border: #cfcfcf 1.2px solid;
@@ -311,19 +312,19 @@ ul li.done form .fa-check:before{
 }
 
 
-.addDevoir input[type="number"]{
+.addDevoir input[type="number"] {
     width: 80px;
 }
 
-.addDevoir input[type="file"]{
+.addDevoir input[type="file"] {
     border: none;
 }
 
-.coefLabel{
+.coefLabel {
     margin-left: 20px;
 }
 
-.addDevoir input[type="submit"]{
+.addDevoir input[type="submit"] {
     width: fit-content;
     margin: auto;
     font-size: 1.2rem;
@@ -332,13 +333,13 @@ ul li.done form .fa-check:before{
     background-color: #53256E;
 }
 
-.addDevoir .fa-x{
+.addDevoir .fa-x {
     cursor: pointer;
 }
 
 
 
-.infoDevoir{
+.infoDevoir {
     position: absolute;
     z-index: 10;
     backdrop-filter: blur(10px) brightness(0.8);
@@ -351,7 +352,7 @@ ul li.done form .fa-check:before{
     justify-content: center;
 }
 
-.infoDevoir section{
+.infoDevoir section {
     background-color: white;
     border-radius: 15px;
     padding: 30px 40px;
@@ -370,29 +371,33 @@ ul li.done form .fa-check:before{
     }
 }
 
-.infoDevoir h1{
+.infoDevoir h1 {
     text-align: center;
     font-size: 2rem;
 }
 
-.infoDevoir .fa-x{
+.infoDevoir .fa-x {
     position: absolute;
     right: 10%;
 }
 
-.infoDevoir .fa-pen-to-square{
+.infoDevoir .fa-pen-to-square {
     position: absolute;
     left: 10%;
 }
 
+#trash {
+    left: 30%;
+}
 
-.infoDevoir .row{
+
+.infoDevoir .row {
     display: flex;
     gap: 30px;
     align-items: baseline;
 }
 
-.infoDevoir span{
+.infoDevoir span {
     color: #A6A6A6;
     font-style: italic;
     font-size: 0.8rem;
@@ -404,6 +409,13 @@ ul li.done form .fa-check:before{
 /* User styles */
 
 
-.user .btnAddDevoir, .user .btnModifDev{
+.user .btnAddDevoir,
+.user .btnModifDev {
     display: none !important;
 }
+
+/* #trash-icon {
+    width: fit-content;
+    position: absolute;
+    left: 20%;
+} */

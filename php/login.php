@@ -118,6 +118,7 @@ if ($_POST["inscriptionSubmit"]) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/login.css">
@@ -133,13 +134,45 @@ if ($_POST["inscriptionSubmit"]) {
 
     <main>
 
+        <script>
+            // $(document).ready(function() {
+            //     $("#pseudoInput").on("input", function() {
+            //         var pseudo = $(this).val();
+            //         if (pseudo.length >= 3) {
+            //             $.ajax({
+            //                 type: 'POST',
+            //                 url: './checkPseudo.php',
+            //                 data: {
+            //                     pseudo: pseudo
+            //                 },
+            //                 success: function(response) {
+            //                     if (response == "Ce pseudo est disponible") {
+            //                         $("#pseudo_err").css("color", "green");
+            //                     } else if (response == "Ce pseudo est déjà pris, veuillez en choisir un autre") {
+            //                         $("#pseudo_err").css("color", "red");
+            //                     } else if (response == "Veuillez saisir un pseudo") {
+            //                         $("#pseudo_err").css("color", "orange");
+            //                     }
+            //                     $("#pseudo_err").text(response);
+            //                 }
+            //             });
+            //             return false;
+            //         } else {
+            //             $('#pseudo_err').html("");
+            //             return false;
+            //         }
+            //     });
+            // });
+        </script>
+
         <form action="../php/login.php" method="post" id="formInscription">
             <h1>Inscription</h1>
 
             <fieldset>
                 <div>
                     <i class="fa-solid fa-user"></i>
-                    <input required minlength="3" name="inscriptionPseudo" type="text" placeholder="Pseudo">
+                    <input required minlength="3" id="pseudoInput" class="pseudoInput" name="inscriptionPseudo" type="text" placeholder="Pseudo">
+                    <span id="pseudo_err" class="pseudo_err"></span>
                 </div>
 
                 <div>
