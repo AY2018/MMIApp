@@ -259,7 +259,7 @@ function modifierDevoir()
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="./styles/general.css">
     <link rel="stylesheet" href="./styles/home.css">
-
+    <link rel="stylesheet" href="./styles/media.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>MMI Devoirs</title>
 </head>
@@ -482,8 +482,11 @@ function modifierDevoir()
                     <option>SAE</option>
                 </select>
 
-                <label for="coef" class="coefLabel">coef. <span>*</span></label>
-                <input id="coef" type="number" name="ajoutCoef">
+                <div>
+                    <label for="coef" class="coefLabel">coef. <span>*</span></label>
+                    <input id="coef" type="number" name="ajoutCoef">
+                </div>
+
             </fieldset>
 
             <label for="file[]">Fichiers</label>
@@ -559,8 +562,11 @@ function modifierDevoir()
                     <option>SAE</option>
                 </select>
 
-                <label for="coef" class="coefLabel">coef.</label>
-                <input type="number" name="modifCoef">
+                <div>
+                    <label for="coef" class="coefLabel">coef.</label>
+                    <input type="number" name="modifCoef">
+                </div>
+
             </fieldset>
 
             <label for="modifFile[]">Fichiers</label>
