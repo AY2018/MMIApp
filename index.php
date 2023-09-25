@@ -290,14 +290,14 @@ function modifierDevoir()
             <p class="session">
                 <?php
                 if ($row["admin"] == 0) {
-                    echo "Session utilisateur de : " . $_SESSION['pseudo'];
+                    echo "Bonjour " . $_SESSION['pseudo'];
                 } else {
                     echo "Session admin de : " . $_SESSION['pseudo'];
                 }
                 ?>
             </p>
 
-            <a href="./php/deconnexion.php">déco</a>
+            <!-- <a href="./php/deconnexion.php">déco</a> -->
         </section>
 
         <section class="sub_heading">
@@ -395,33 +395,38 @@ function modifierDevoir()
                 $sql = "SELECT devoirs.*, coeffs.competence, coeffs.coeff, fichiers.fichiers_associes FROM devoirs LEFT JOIN coeffs ON devoirs.idDevoir = coeffs.idDevoir LEFT JOIN ( SELECT idDevoir, GROUP_CONCAT(nomFichier) AS fichiers_associes FROM fichiers GROUP BY idDevoir ) AS fichiers ON devoirs.idDevoir = fichiers.idDevoir ORDER BY `devoirs`.`date` ASC";
                 $result = mysqli_query($link, $sql);
 
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $devoir = $row["idDevoir"];
-                    $result2 = mysqli_query($link, "SELECT * FROM `etatDevoirs` WHERE `idEtudiant` = $id AND `idDevoir` = $devoir;");
-                    $date = date("d/m", strtotime($row["date"]));
-                    if (($row2 = mysqli_fetch_assoc($result2)) && $row2["statut"] == "terminé") {
-                        $li = "<li class='done'>";
-                    } else {
-                        $li = "<li>";
-                    }
+                if (mysqli_num_rows($result) == 0) {
+                    echo "<p class='noDevoir'>Vous n'avez aucun devoir à faire ou vous avez tout fini !</p>";
+                } else {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $devoir = $row["idDevoir"];
+                        $result2 = mysqli_query($link, "SELECT * FROM `etatDevoirs` WHERE `idEtudiant` = $id AND `idDevoir` = $devoir;");
+                        $date = date("d/m", strtotime($row["date"]));
+                        if (($row2 = mysqli_fetch_assoc($result2)) && $row2["statut"] == "terminé") {
+                            $li = "<li class='done'>";
+                        } else {
+                            $li = "<li>";
+                        }
 
-                    echo $li . "
-                    <form action='php/update_devoir.php' method='post'> 
-                        <input type='hidden' name='devoirID' value='" . $row['idDevoir'] . "'>
-                        <i class='fa-solid fa-check'></i>
-                        <input type='submit' value='' name='done-checkbox' class='done-checkbox'>
-                    </form>
-                    <div class='firstColumn'>
-                        <h2 class='title'>" . $row["titre"] . "</h2>
-                        <p class='matiere'>" . $row["matiere"] . "</p>
-                    </div>
-                    <div class='secondColumn'>
-                        <p class='date'>" . $date . "</p>
-                        <button id='iDevoir' class='fa-solid fa-circle-info iDevoir' data-iddevoir='" . $row['idDevoir'] . "'></button>
-                    </div>
-                </li>";
+                        echo $li . "
+                        <form action='php/update_devoir.php' method='post'> 
+                            <input type='hidden' name='devoirID' value='" . $row['idDevoir'] . "'>
+                            <i class='fa-solid fa-check'></i>
+                            <input type='submit' value='' name='done-checkbox' class='done-checkbox'>
+                        </form>
+                        <div class='firstColumn'>
+                            <h2 class='title'>" . $row["titre"] . "</h2>
+                            <p class='matiere'>" . $row["matiere"] . "</p>
+                        </div>
+                        <div class='secondColumn'>
+                            <p class='date'>" . $date . "</p>
+                            <button id='iDevoir' class='fa-solid fa-circle-info iDevoir' data-iddevoir='" . $row['idDevoir'] . "'></button>
+                        </div>
+                    </li>";
+                    }
                 }
                 ?>
+
             </ul>
         </article>
     </main>
