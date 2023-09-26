@@ -223,11 +223,15 @@ if ($_POST["inscriptionSubmit"]) {
                 <div>
                     <i class="fa-solid fa-lock"></i>
                     <input required minlength="6" name="inscriptionMDP" type="password" autocomplete="current-password" placeholder="Mot de passe">
+                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
                 </div>
 
                 <div>
                     <i class="fa-solid fa-lock"></i>
-                    <input required minlength="6" name="confirmInscriptionMDP" type="password" autocomplete="current-password" placeholder="Confirmation du mot de passe">
+                    <input required minlength="6" name="confirmInscriptionMDP" type="password" autocomplete="current-password" placeholder="Confirmation du mdp">
+                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
                 </div>
             </fieldset>
 
@@ -250,6 +254,7 @@ if ($_POST["inscriptionSubmit"]) {
                 <div>
                     <i class="fa-solid fa-lock"></i>
                     <input required name="connexionMDP" type="password" autocomplete="current-password" placeholder="Mot de passe">
+                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
             </fieldset>
 
@@ -263,6 +268,34 @@ if ($_POST["inscriptionSubmit"]) {
     </main>
 
 
+    <script>
+        // Get all elements with the class "toggle-password" within each form
+        var toggleButtons = document.querySelectorAll(".toggle-password");
+
+        // Add a click event listener to each element
+        toggleButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                // Toggle the classes
+                if (this.classList.contains("fa-eye")) {
+                    this.classList.remove("fa-eye");
+                    this.classList.add("fa-eye-slash");
+                } else {
+                    this.classList.remove("fa-eye-slash");
+                    this.classList.add("fa-eye");
+                }
+
+                // Get the input element which is the previous sibling of the button
+                var input = this.previousElementSibling;
+
+                // Toggle the input type between "password" and "text"
+                if (input.getAttribute("type") === "password") {
+                    input.setAttribute("type", "text");
+                } else {
+                    input.setAttribute("type", "password");
+                }
+            });
+        });
+    </script>
     <script src="../js/login.js"></script>
 </body>
 

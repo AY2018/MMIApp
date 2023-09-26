@@ -59,6 +59,16 @@ form fieldset div i {
 }
 
 
+form fieldset div span {
+    position: absolute;
+    top: 50%;
+    transform: translate(-10px, -50%);
+    right: 0px;
+    color: #53256E;
+    font-size: 0.8rem;
+}
+
+
 form input[type="submit"]{
     color: white;
     background-color: #53256E;
