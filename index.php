@@ -37,7 +37,7 @@ function ajoutDevoir()
 
     // gerer l'erreur de la requete sql
     if (mysqli_num_rows($CheckInfosQuery) > 0) {
-        echo "<script>console.log(mysqli_error($link))</script>";
+
         echo "<section class='errorMsg' id='errorMsg'>
             <i class=' fa-solid fa-x'></i>
             <p>Le devoir existe déjà, veuillez rééssayer !</p>
@@ -72,21 +72,20 @@ function ajoutDevoir()
                     if (move_uploaded_file($_FILES['ajoutFile']['tmp_name'][$index], $targetPath)) {
                         // Insérer le nom du fichier dans la base de données avec le même ID de devoir
                         $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir)";
+                        echo $sql4;
                         $result4 = mysqli_query($link, $sql4);
 
                         if (!$result4) {
-                            echo "<script>console.log(mysqli_error($link))</script>";
                             echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>Erreur lors de l'ajout du devoir, veuillez rééssayer !</p>
+                                <p>Erreur lors de l'ajout du fichier, veuillez modifier le devoir pour ajouter le fichier !</p>
                             </section>";
                         }
                     } else {
                         // Gérer les erreurs d'upload
-                        echo "<script>console.log(mysqli_error($link))</script>";
                         echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>Erreur lors de l'ajout du devoir, veuillez rééssayer !</p>
+                                <p>Erreur lors de l'ajout du fichier, veuillez modifier le devoir pour ajouter le fichier !</p>
                             </section>";
                     }
                 }
@@ -95,8 +94,9 @@ function ajoutDevoir()
                 <i class=' fa-solid fa-x'></i>
                 <p>Devoir ajouté avec succès !</p>
             </section>";
+            echo "<script>location.reload();</script>";
         } else {
-            echo "<script>console.log(mysqli_error($link))</script>";
+
             echo "<section class='errorMsg' id='errorMsg'>
                 <i class=' fa-solid fa-x'></i>
                 <p>Erreur lors de l'ajout du devoir, veuillez rééssayer !</p>
@@ -140,7 +140,7 @@ function modifierDevoir()
                 $sqlCheckInfosBDD = "SELECT * FROM `fichiers` WHERE `idDevoir` = $idDevoir";
                 $resultCheckInfosBDD = mysqli_query($link, $sqlCheckInfosBDD);
                 if (!$resultCheckInfosBDD) {
-                    echo "<script>console.log(mysqli_error($link))</script>";
+
                     echo "<section class='errorMsg' id='errorMsg'>
                         <i class=' fa-solid fa-x'></i>
                         <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
@@ -163,10 +163,10 @@ function modifierDevoir()
                             $result4 = mysqli_query($link, $sql4);
 
                             if (!$result4) {
-                                echo "<script>console.log(mysqli_error($link))</script>";
+
                                 echo "<section class='errorMsg' id='errorMsg'>
                                         <i class=' fa-solid fa-x'></i>
-                                        <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                                        <p>Il y a une erreur lors de la modification du devoir, essayez de raccourcir le nom du fichier ou de le changer par un nom sans caractères spéciaux.</p>
                                     </section>";
                                 return;
                             } else {
@@ -177,16 +177,16 @@ function modifierDevoir()
                             }
                         } else {
                             // Gérer les erreurs d'upload
-                            echo "<script>console.log(mysqli_error($link))</script>";
+
                             echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                                <p>2Erreur lors de la modification du devoir, veuillez rééssayer !</p>
                             </section>";
                         }
                     }
                     echo "<section class='passedMsg' id='passedMsg'>
                             <i class=' fa-solid fa-x'></i>
-                            <p>Devoir ajouté avec succès !</p>
+                            <p>Devoir modifié avec succès !</p>
                         </section>";
                 } else {
                     // Upload des fichiers transmis par le formulaire vers le serveur et la base de données
@@ -197,18 +197,16 @@ function modifierDevoir()
                             // Générer un nom de fichier unique
                             $uniqueFileName = uniqid() . "_" . mysqli_real_escape_string($link, $fileName);
                             $targetPath = $uploadDirectory . $uniqueFileName;
-
                             // Vérifier si le fichier a été téléchargé avec succès
                             if (move_uploaded_file($_FILES['modifFile']['tmp_name'][$index], $targetPath)) {
                                 // Insérer le nom du fichier dans la base de données avec le même ID de devoir
                                 $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir);";
+                                echo $sql4;
                                 $result4 = mysqli_query($link, $sql4);
-
                                 if (!$result4) {
-                                    echo "<script>console.log(mysqli_error($link))</script>";
                                     echo "<section class='errorMsg' id='errorMsg'>
                                         <i class=' fa-solid fa-x'></i>
-                                        <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                                        <p>3Erreur lors de la modification du devoir, veuillez rééssayer !</p>
                                     </section>";
                                 } else {
                                     echo "<section class='passedMsg' id='passedMsg'>
@@ -218,10 +216,10 @@ function modifierDevoir()
                                 }
                             } else {
                                 // Gérer les erreurs d'upload
-                                echo "<script>console.log(mysqli_error($link))</script>";
+
                                 echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                                <p>4Erreur lors de la modification du devoir, veuillez rééssayer !</p>
                             </section>";
                             }
                         }
@@ -229,17 +227,17 @@ function modifierDevoir()
                 }
             }
         } else {
-            echo "<script>console.log(mysqli_error($link))</script>";
+
             echo "<section class='errorMsg' id='errorMsg'>
                 <i class=' fa-solid fa-x'></i>
-                <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                <p>5Erreur lors de la modification du devoir, veuillez rééssayer !</p>
             </section>";
         }
     } else {
-        echo "<script>console.log(mysqli_error($link))</script>";
+
         echo "<section class='errorMsg' id='errorMsg'>
                 <i class=' fa-solid fa-x'></i>
-                <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                <p>6Erreur lors de la modification du devoir, veuillez rééssayer !</p>
             </section>";
     }
 
@@ -254,13 +252,24 @@ function modifierDevoir()
 <html lang="fr">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-91RZ02SB3H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-91RZ02SB3H');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="./styles/general.css">
     <link rel="stylesheet" href="./styles/home.css">
-    <link rel="stylesheet" href="./styles/media.css">
-    <link rel="stylesheet" href="./styles/error.css">
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>MMI Devoirs</title>
 </head>
@@ -350,7 +359,7 @@ function modifierDevoir()
 
                                 response.fichiers.forEach(function(fichier) {
                                     // Utilisez une opération de découpage pour obtenir le nom du fichier
-                                    let nomDuFichier = fichier.split('_')[1]; // Suppose que le nom du fichier est séparé par un "_"
+                                    let nomDuFichier = fichier.slice(fichier.indexOf('_') + 1); // Suppose que le nom du fichier est séparé par un "_"
                                     fichiersHtml += '<li><a href="fichiers/' + fichier + '" download>' + nomDuFichier + '</a></li>';
 
                                     nomsDesFichiers.push(nomDuFichier); // Ajoutez le nom du fichier au tableau
@@ -400,16 +409,16 @@ function modifierDevoir()
                 $result = mysqli_query($link, $sql);
 
                 if (mysqli_num_rows($result) == 0) {
-                    echo "<p class='noDevoir'>Vous n'avez aucun devoir à faire ou vous avez tout fini !</p>";
+                    echo "<p class='noDevoir'>Il n'y a aucun devoir prévue pour le moment.</p>";
                 } else {
                     while ($row = mysqli_fetch_assoc($result)) {
                         $devoir = $row["idDevoir"];
                         $result2 = mysqli_query($link, "SELECT * FROM `etatDevoirs` WHERE `idEtudiant` = $id AND `idDevoir` = $devoir;");
                         $date = date("d/m", strtotime($row["date"]));
                         if (($row2 = mysqli_fetch_assoc($result2)) && $row2["statut"] == "terminé") {
-                            $li = "<li class='done'>";
+                            $li = "<li id='liDevoir' class='done'>";
                         } else {
-                            $li = "<li>";
+                            $li = "<li id='liDevoir'>";
                         }
 
                         echo $li . "
@@ -434,7 +443,7 @@ function modifierDevoir()
             </ul>
         </article>
     </main>
-    <!-- <button id='iDevoir' class='fa-solid fa-circle-info' onclick='openInfo(" . $row[' idDevoir'] . ")'></button> -->
+
 
     <!------------ Ajouter formulaire  ---------->
     <article class=" addDevoir" id="addForm">
@@ -469,7 +478,7 @@ function modifierDevoir()
             <label for="date">Date <span>*</span></label>
             <input id="date" type="date" name="ajoutDate" class="inputDate" required>
 
-            <label for="description">Description <span>*</span></label>
+            <label for="description">Description</label>
             <textarea maxlength="255" name="ajoutDescription" id="description" cols="30" rows="5" placeholder="Ajouter une description ..."></textarea>
 
             <label for="type">Type <span>*</span></label>
@@ -483,17 +492,14 @@ function modifierDevoir()
                     <option>SAE</option>
                 </select>
 
-                <div>
-                    <label for="coef" class="coefLabel">coef. <span>*</span></label>
-                    <input id="coef" type="number" name="ajoutCoef">
-                </div>
-
+                <label for="coef" class="coefLabel">coef.</label>
+                <input id="coef" type="number" name="ajoutCoef">
             </fieldset>
 
             <label for="file[]">Fichiers</label>
             <input id="file[]" type="file" multiple accept="*/*" name="ajoutFile[]">
 
-            <label for="coefMatier">Coef. de la matière dans la compétence <span>*</span></label>
+            <label for="coefMatier">Coef. de la matière dans la compétence</label>
             <fieldset>
                 <select id="coefMatier" name="ajoutCoefMat">
                     <option selected value=""></option>
@@ -507,13 +513,15 @@ function modifierDevoir()
                 <input name="ajoutCoefMatValue" type="number" class="coefLabel">
             </fieldset>
 
-            <input type="submit" name="ajoutSubmit" value="Ajouter">
+            <input type="submit" id="ajoutSubmit" name="ajoutSubmit" value="Ajouter">
         </form>
     </article>
-    <?php if (isset($_POST['ajoutSubmit'])) {
+    <?php
+    if (isset($_POST['ajoutSubmit'])) {
 
         ajoutDevoir();
-    } ?>
+    }
+    ?>
 
 
     <!------------ Modifier formulaire  ---------->
@@ -563,11 +571,8 @@ function modifierDevoir()
                     <option>SAE</option>
                 </select>
 
-                <div>
-                    <label for="coef" class="coefLabel">coef.</label>
-                    <input type="number" name="modifCoef">
-                </div>
-
+                <label for="coef" class="coefLabel">coef.</label>
+                <input type="number" name="modifCoef">
             </fieldset>
 
             <label for="modifFile[]">Fichiers</label>
@@ -604,7 +609,7 @@ function modifierDevoir()
             <?php
             if ($privilege == "admin") {
                 echo '<i class="fa-solid fa-pen-to-square btnModifDev" onclick="openModif()"></i>
-            <i id="trash-icon" class="fa-solid fa-trash trash-icon" style="color: #d71414;left: 20%; position: absolute" onclick="openDlt()"></i>';
+                    <i id="trash-icon" class="fa-solid fa-trash trash-icon" style="color: #d71414;left: 20%; position: absolute" onclick="openDlt()"></i>';
             }
             ?>
             <i class="fa-solid fa-x" onclick="closeInfo()"></i>
@@ -647,15 +652,6 @@ function modifierDevoir()
 
         </form>
     </article>
-
-
-    <!-- Error Message -->
-    <!-- Tu peux juste echo le message et l'animation s'enclanchera automatiquement -->
-
-    <!-- <section class="errorMsg" id="errorMsg">
-        <i class=" fa-solid fa-x"></i>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-    </section> -->
     <script src="./js/main.js"></script>
 </body>
 

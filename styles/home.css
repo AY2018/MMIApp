@@ -322,7 +322,8 @@ ul li.done form .fa-check:before {
     border-radius: 5px;
 }
 
-.addDevoir input[type="date"], .addDevoir textarea{
+.addDevoir input[type="date"],
+.addDevoir textarea {
     padding: 1rem;
 }
 
@@ -330,7 +331,7 @@ ul li.done form .fa-check:before {
     width: 80px;
 }
 
-.addDevoir textarea{
+.addDevoir textarea {
     height: 100px;
     padding-bottom: 100px;
 }
@@ -468,6 +469,61 @@ ul li.done form .fa-check:before {
     background-color: #53256E;
 }
 
+
+.errorMsg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 20px;
+    background-color: rgb(251, 81, 81);
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 25px;
+    color: whitesmoke;
+    animation: messageAnimation 3s ease-out forwards;
+    z-index: 99999999999999999999999999999;
+}
+
+.passedMsg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 20px;
+    background-color: rgb(21, 164, 49);
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 25px;
+    color: whitesmoke;
+    animation: messageAnimation 3s ease-out forwards;
+}
+
+@keyframes messageAnimation {
+    0% {
+        top: -40px;
+        opacity: 0;
+    }
+
+    10% {
+        top: 20px;
+        opacity: 1;
+    }
+
+    90% {
+        top: 20px;
+        opacity: 1;
+    }
+
+    100% {
+        top: -40px;
+        opacity: 0;
+    }
+}
 
 i {
     cursor: pointer;

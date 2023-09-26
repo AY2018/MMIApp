@@ -16362,3 +16362,235 @@ Stack trace:
 #0 /home/nlerond/public_html/MMIApp/index.php(408): mysqli_fetch_assoc(false)
 #1 {main}
   thrown in /home/nlerond/public_html/MMIApp/index.php on line 408
+[25-Sep-2023 18:22:16 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[25-Sep-2023 18:22:16 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[25-Sep-2023 18:22:16 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[25-Sep-2023 18:22:16 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[25-Sep-2023 18:22:16 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 295
+[25-Sep-2023 18:22:16 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:408
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(408): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 408
+[25-Sep-2023 18:24:45 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[25-Sep-2023 18:24:45 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[25-Sep-2023 18:24:45 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[25-Sep-2023 18:24:45 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[25-Sep-2023 18:24:45 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 295
+[25-Sep-2023 18:24:45 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:408
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(408): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 408
+[25-Sep-2023 19:13:43 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[25-Sep-2023 19:13:57 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[25-Sep-2023 19:13:57 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[25-Sep-2023 19:13:58 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[25-Sep-2023 19:13:58 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[25-Sep-2023 19:13:58 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[25-Sep-2023 19:15:32 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[25-Sep-2023 19:15:33 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[25-Sep-2023 19:39:24 UTC] PHP Warning:  Undefined variable $ids in /home/nlerond/public_html/MMIApp/index.php on line 398
+[25-Sep-2023 19:39:24 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:401
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(401): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 401
+[25-Sep-2023 19:40:11 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[25-Sep-2023 19:40:35 UTC] PHP Parse error:  syntax error, unexpected token "}", expecting "," or ";" in /home/nlerond/public_html/MMIApp/index.php on line 404
+[25-Sep-2023 19:40:46 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:407
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(407): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 407
+[25-Sep-2023 19:40:50 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:407
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(407): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 407
+[25-Sep-2023 19:41:41 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli_result could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:400
+Stack trace:
+#0 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 400
+[25-Sep-2023 19:42:08 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli_result could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:401
+Stack trace:
+#0 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 401
+[25-Sep-2023 19:42:19 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli_result could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:400
+Stack trace:
+#0 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 400
+[25-Sep-2023 19:42:26 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:408
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(408): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 408
+[25-Sep-2023 19:42:57 UTC] PHP Warning:  Array to string conversion in /home/nlerond/public_html/MMIApp/index.php on line 401
+[25-Sep-2023 19:42:57 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:409
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(409): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 409
+[25-Sep-2023 19:45:04 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:407
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(407): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 407
+[26-Sep-2023 02:59:03 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:78
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(511): ajoutDevoir()
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 78
+[26-Sep-2023 02:59:10 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:40
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(511): ajoutDevoir()
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 40
+[26-Sep-2023 02:59:14 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:40
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(511): ajoutDevoir()
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 40
+[26-Sep-2023 03:00:04 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:208
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(591): modifierDevoir()
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 208
+[26-Sep-2023 03:00:11 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:208
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(591): modifierDevoir()
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 208
+[26-Sep-2023 03:09:48 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 03:09:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 03:09:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 03:09:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 03:09:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 295
+[26-Sep-2023 03:09:48 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:408
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(408): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 408
+[26-Sep-2023 05:33:55 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 05:33:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 05:33:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 05:33:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 05:33:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 297
+[26-Sep-2023 05:33:55 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:410
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(410): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 410
+[26-Sep-2023 06:31:51 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 06:31:51 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 06:31:51 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 06:31:51 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 06:31:51 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 297
+[26-Sep-2023 06:31:51 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:410
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(410): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 410
+[26-Sep-2023 08:38:28 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 08:38:28 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 08:38:28 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 08:38:28 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 08:38:28 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 297
+[26-Sep-2023 10:41:59 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 10:41:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 10:41:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 10:41:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 10:41:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 297
+[26-Sep-2023 10:41:59 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:410
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(410): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 410
+[26-Sep-2023 12:17:50 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 12:17:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 12:17:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 12:17:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 12:17:50 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 294
+[26-Sep-2023 12:17:50 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:407
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(407): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 407
+[26-Sep-2023 14:53:52 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 14:53:53 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 14:53:53 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 14:53:53 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 14:53:53 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 294
+[26-Sep-2023 14:53:53 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:407
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(407): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 407
+[26-Sep-2023 14:57:09 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 14:57:09 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 14:57:09 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 14:57:09 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 14:57:09 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 294
+[26-Sep-2023 14:57:09 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:407
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(407): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 407
+[26-Sep-2023 16:33:35 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 16:33:35 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 16:33:35 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 16:33:35 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 16:33:35 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 294
+[26-Sep-2023 16:33:35 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:407
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(407): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 407
+[26-Sep-2023 16:44:28 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[26-Sep-2023 16:44:28 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[26-Sep-2023 16:44:28 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[26-Sep-2023 16:44:28 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[26-Sep-2023 16:44:28 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 305
+[26-Sep-2023 16:44:28 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:418
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(418): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 418
+[26-Sep-2023 16:46:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nlerond/public_html/MMIApp/index.php:250) in /home/nlerond/public_html/MMIApp/index.php on line 97
+[26-Sep-2023 16:47:35 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nlerond/public_html/MMIApp/index.php:250) in /home/nlerond/public_html/MMIApp/index.php on line 97

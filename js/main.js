@@ -105,11 +105,11 @@ function closeModif() {
 
 const deleteArticle = document.getElementById("articleDelete");
 
-        function openDlt() {
-            deleteArticle.style.display = "flex";
-        }
+function openDlt() {
+    deleteArticle.style.display = "flex";
+}
 
-        function closeDlt() {
-            deleteArticle.style.display = "none";
-            console.log('lol');
-        }
+function closeDlt() {
+    deleteArticle.style.display = "none";
+    console.log('lol');
+}
