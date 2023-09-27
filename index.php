@@ -78,35 +78,30 @@ function ajoutDevoir()
                         if (!$result4) {
                             echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>Erreur lors de l'ajout du fichier, veuillez modifier le devoir pour ajouter le fichier !</p>
+                                <p>Erreur lors de l'ajout du fichier, veuillez modifier le devoir pour ajouter le fichier ! (Code erreur : 11)</p>
                             </section>";
                         }
                     } else {
                         // Gérer les erreurs d'upload
                         echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>Erreur lors de l'ajout du fichier, veuillez modifier le devoir pour ajouter le fichier !</p>
+                                <p>Erreur lors de l'ajout du fichier, veuillez modifier le devoir pour ajouter le fichier ! (Code erreur : 12)</p>
                             </section>";
                     }
                 }
             }
-            echo "<section class='passedMsg' id='passedMsg'>
-                <i class=' fa-solid fa-x'></i>
-                <p>Devoir ajouté avec succès !</p>
-            </section>";
-            echo "<script>location.reload();</script>";
+            echo "<script>window.location.href = './pages/devoir_ajoute.html';</script>";
         } else {
 
             echo "<section class='errorMsg' id='errorMsg'>
                 <i class=' fa-solid fa-x'></i>
-                <p>Erreur lors de l'ajout du devoir, veuillez rééssayer !</p>
+                <p>Erreur lors de l'ajout du devoir, veuillez rééssayer ! (Code erreur : 13)</p>
             </section>";
         }
     }
     // Fermeture de la connexion
     mysqli_close($link);
 }
-
 
 function modifierDevoir()
 {
@@ -143,7 +138,7 @@ function modifierDevoir()
 
                     echo "<section class='errorMsg' id='errorMsg'>
                         <i class=' fa-solid fa-x'></i>
-                        <p>Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                        <p>Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 21)</p>
                     </section>";
                 }
 
@@ -166,7 +161,7 @@ function modifierDevoir()
 
                                 echo "<section class='errorMsg' id='errorMsg'>
                                         <i class=' fa-solid fa-x'></i>
-                                        <p>Il y a une erreur lors de la modification du devoir, essayez de raccourcir le nom du fichier ou de le changer par un nom sans caractères spéciaux.</p>
+                                        <p>Il y a une erreur lors de la modification du devoir, essayez de raccourcir le nom du fichier ou de le changer par un nom sans caractères spéciaux. (Code erreur : 22)</p>
                                     </section>";
                                 return;
                             } else {
@@ -180,7 +175,7 @@ function modifierDevoir()
 
                             echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>2Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                                <p>2Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 23)</p>
                             </section>";
                         }
                     }
@@ -201,12 +196,11 @@ function modifierDevoir()
                             if (move_uploaded_file($_FILES['modifFile']['tmp_name'][$index], $targetPath)) {
                                 // Insérer le nom du fichier dans la base de données avec le même ID de devoir
                                 $sql4 = "INSERT INTO fichiers (nomFichier, idDevoir) VALUES ('$uniqueFileName', $idDevoir);";
-                                echo $sql4;
                                 $result4 = mysqli_query($link, $sql4);
                                 if (!$result4) {
                                     echo "<section class='errorMsg' id='errorMsg'>
                                         <i class=' fa-solid fa-x'></i>
-                                        <p>3Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                                        <p>3Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 24)</p>
                                     </section>";
                                 } else {
                                     echo "<section class='passedMsg' id='passedMsg'>
@@ -219,7 +213,7 @@ function modifierDevoir()
 
                                 echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>4Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                                <p>4Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 25)</p>
                             </section>";
                             }
                         }
@@ -230,14 +224,14 @@ function modifierDevoir()
 
             echo "<section class='errorMsg' id='errorMsg'>
                 <i class=' fa-solid fa-x'></i>
-                <p>5Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                <p>5Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 26)</p>
             </section>";
         }
     } else {
 
         echo "<section class='errorMsg' id='errorMsg'>
                 <i class=' fa-solid fa-x'></i>
-                <p>6Erreur lors de la modification du devoir, veuillez rééssayer !</p>
+                <p>6Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 27)</p>
             </section>";
     }
 
@@ -247,7 +241,6 @@ function modifierDevoir()
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -389,7 +382,7 @@ function modifierDevoir()
                             $('#hiddenSupprimerDevoir').val(response.id);
                         },
                         error: function(error) {
-                            console.log('Erreur lors de la récupération des détails du devoir : ' + error.responseText);
+                            document.write("<section class='errorMsg' id='errorMsg'> <i class = ' fa-solid fa-x' > < /i> <p > 6 Erreur lors de la modification du devoir, veuillez rééssayer!(Code erreur: 30) < /p> </section>");
                         }
                     });
                 });
@@ -447,7 +440,7 @@ function modifierDevoir()
 
     <!------------ Ajouter formulaire  ---------->
     <article class=" addDevoir" id="addForm">
-        <form action="index.php" method="post" class="addDevoir_form" enctype="multipart/form-data">
+        <form action="index.php" method="post" id="addDevoir_form" class="addDevoir_form" enctype="multipart/form-data">
             <i class=" fa-solid fa-x" onclick="closeAdd()"></i>
             <h1>Nouveau devoir</h1>
 
