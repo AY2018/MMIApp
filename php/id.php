@@ -27,6 +27,7 @@ if (isset($_POST['devoirID'])) {
         $coefDevoir = isset($rowDevoir['coefDevoir']) ? $rowDevoir['coefDevoir'] : "Aucune information sur le devoir";
         $competence = isset($rowCoeff['competence']) && $rowCoeff['competence'] != 'NULL' ? $rowCoeff['competence'] : "Aucune information sur le devoir";
         $coeffCompetence = isset($rowCoeff['coeff']) ? $rowCoeff['coeff'] : "Aucune information sur le devoir";
+        $groupe = isset($rowDevoir['groupe']) ? $rowDevoir['groupe'] : "Aucune information sur le devoir";
 
         // Requête pour récupérer les fichiers associés
         $sqlFichiers = "SELECT nomFichier FROM fichiers WHERE idDevoir = '$id'";
@@ -43,6 +44,7 @@ if (isset($_POST['devoirID'])) {
             "competence" => $competence,
             "coeffCompetence" => $coeffCompetence,
             "id" => $id,
+            "groupe" => $groupe,
             "fichiers" => array() // Tableau pour stocker les noms de fichiers
         );
 

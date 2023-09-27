@@ -29,7 +29,7 @@ function ajoutDevoir()
     $coef = isset($_POST['ajoutCoef']) && $_POST['ajoutCoef'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoef']) . "'" : 'NULL';
     $coefMat = isset($_POST['ajoutCoefMat']) && $_POST['ajoutCoefMat'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoefMat']) . "'" : 'NULL';
     $coefMatValue = isset($_POST['ajoutCoefMatValue']) && $_POST['ajoutCoefMatValue'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoefMatValue']) . "'" : 'NULL';
-
+    $groupe = mysqli_real_escape_string($link, $_POST['ajoutGroupe']);
 
     $CheckInfos = "SELECT * FROM `devoirs` WHERE `titre` = '$title' AND `matiere` = '$matiere'";
     $CheckInfosQuery = mysqli_query($link, $CheckInfos);
@@ -43,14 +43,7 @@ function ajoutDevoir()
             <p>Le devoir existe déjà, veuillez rééssayer !</p>
         </section>";
     } else {
-        $sql = "INSERT INTO `devoirs` (`titre`, `matiere`, `date`, `description`, `type`, `coefDevoir`, `idEtudiant`)
-        SELECT '$title', '$matiere', '$date', $description, '$type', $coef, '" . $_SESSION['id'] . "'
-        FROM DUAL
-        WHERE NOT EXISTS (
-            SELECT 1
-            FROM `devoirs`
-            WHERE `titre` = '$title' AND `matiere` = '$matiere' AND `date` = '$date' AND `description` = '$description' AND `type` = '$type' AND `coefDevoir` = $coef
-        )";
+        $sql = "INSERT INTO `devoirs`(`titre`, `matiere`, `date`, `description`, `type`, `coefDevoir`, `groupe`, `idEtudiant`) VALUES ('$title', '$matiere', '$date', $description, '$type', $coef, '$groupe', '" . $_SESSION['id'] . "');";
         $result = mysqli_query($link, $sql);
 
         $idDevoir = mysqli_insert_id($link);
@@ -118,9 +111,10 @@ function modifierDevoir()
     $modifMat = isset($_POST['modifMat']) && $_POST['modifMat'] !== '' ? mysqli_real_escape_string($link, $_POST['modifMat']) : 'NULL';
     $modifCoefMatier = isset($_POST['modifCoefMatier']) && $_POST['modifCoefMatier'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['modifCoefMatier']) . "'" : 'NULL';
     $idDevoir = isset($_POST['modifHidden']) && $_POST['modifHidden'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['modifHidden']) . "'" : 'NULL';
+    $groupe = mysqli_real_escape_string($link, $_POST['modifGroupe']);
 
     if ($idDevoir != 'NULL') {
-        $sqlUpdateDevoir = "UPDATE `devoirs` SET `titre` = '$title', `matiere` = '$matiere', `date` = '$date', `description` = '$description', `type` = '$type', `coefDevoir` = $coef WHERE `devoirs`.`idDevoir` = $idDevoir";
+        $sqlUpdateDevoir = "UPDATE `devoirs` SET `titre` = '$title', `matiere` = '$matiere', `date` = '$date', `description` = '$description', `type` = '$type', `coefDevoir` = $coef, `groupe` = '$groupe' WHERE `devoirs`.`idDevoir` = $idDevoir";
         $result = mysqli_query($link, $sqlUpdateDevoir);
 
         $sqlUpdateCoeff = "UPDATE `coeffs` SET `competence` = '$modifMat', `coeff` = $modifCoefMatier WHERE `coeffs`.`idDevoir` = $idDevoir;";
@@ -175,7 +169,7 @@ function modifierDevoir()
 
                             echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>2Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 23)</p>
+                                <p>Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 23)</p>
                             </section>";
                         }
                     }
@@ -200,7 +194,7 @@ function modifierDevoir()
                                 if (!$result4) {
                                     echo "<section class='errorMsg' id='errorMsg'>
                                         <i class=' fa-solid fa-x'></i>
-                                        <p>3Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 24)</p>
+                                        <p>Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 24)</p>
                                     </section>";
                                 } else {
                                     echo "<section class='passedMsg' id='passedMsg'>
@@ -213,28 +207,26 @@ function modifierDevoir()
 
                                 echo "<section class='errorMsg' id='errorMsg'>
                                 <i class=' fa-solid fa-x'></i>
-                                <p>4Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 25)</p>
+                                <p>Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 25)</p>
                             </section>";
                             }
                         }
                     }
                 }
             }
+            echo "<script>window.location.href = './pages/devoir_modifie.html';</script>";
         } else {
-
             echo "<section class='errorMsg' id='errorMsg'>
                 <i class=' fa-solid fa-x'></i>
                 <p>5Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 26)</p>
             </section>";
         }
     } else {
-
         echo "<section class='errorMsg' id='errorMsg'>
                 <i class=' fa-solid fa-x'></i>
                 <p>6Erreur lors de la modification du devoir, veuillez rééssayer ! (Code erreur : 27)</p>
             </section>";
     }
-
     mysqli_close($link);
 }
 
@@ -302,8 +294,6 @@ function modifierDevoir()
                 }
                 ?>
             </p>
-
-            <!-- <a href="./php/deconnexion.php">déco</a> -->
         </section>
 
         <section class="sub_heading">
@@ -377,12 +367,13 @@ function modifierDevoir()
                             $('select[name="modifMat"]').val(response.competence);
                             $('input[name="modifCoefMatier"]').val(response.coeffCompetence);
                             $('input[name="modifHidden"]').val(response.id);
+                            $('select[name="modifGroupe"]').val(response.groupe);
 
 
                             $('#hiddenSupprimerDevoir').val(response.id);
                         },
                         error: function(error) {
-                            document.write("<section class='errorMsg' id='errorMsg'> <i class = ' fa-solid fa-x' > < /i> <p > 6 Erreur lors de la modification du devoir, veuillez rééssayer!(Code erreur: 30) < /p> </section>");
+                            alert("Erreur lors de la modification du devoir, veuillez rééssayer!(Code erreur: 30)");
                         }
                     });
                 });
@@ -398,13 +389,15 @@ function modifierDevoir()
                 <?php
                 $id = $_SESSION['id'];
                 $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
-                $sql = "SELECT devoirs.*, coeffs.competence, coeffs.coeff, fichiers.fichiers_associes FROM devoirs LEFT JOIN coeffs ON devoirs.idDevoir = coeffs.idDevoir LEFT JOIN ( SELECT idDevoir, GROUP_CONCAT(nomFichier) AS fichiers_associes FROM fichiers GROUP BY idDevoir ) AS fichiers ON devoirs.idDevoir = fichiers.idDevoir ORDER BY `devoirs`.`date` ASC";
+                $sql = "SELECT devoirs.*, coeffs.competence, coeffs.coeff, fichiers.fichiers_associes FROM devoirs LEFT JOIN coeffs ON devoirs.idDevoir = coeffs.idDevoir LEFT JOIN ( SELECT idDevoir, GROUP_CONCAT(nomFichier) AS fichiers_associes FROM fichiers GROUP BY idDevoir ) AS fichiers ON devoirs.idDevoir = fichiers.idDevoir WHERE devoirs.groupe = 'Tous' OR devoirs.groupe = SUBSTRING((SELECT groupe FROM etudiants WHERE idEtudiant = '$id'), 1, 1) OR devoirs.groupe = (SELECT groupe FROM etudiants WHERE idEtudiant = '$id') ORDER BY devoirs.date ASC;";
                 $result = mysqli_query($link, $sql);
+                $rowCount = 0;
 
                 if (mysqli_num_rows($result) == 0) {
                     echo "<p class='noDevoir'>Il n'y a aucun devoir prévue pour le moment.</p>";
                 } else {
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $rowCount++;
                         $devoir = $row["idDevoir"];
                         $result2 = mysqli_query($link, "SELECT * FROM `etatDevoirs` WHERE `idEtudiant` = $id AND `idDevoir` = $devoir;");
                         $date = date("d/m", strtotime($row["date"]));
@@ -421,7 +414,8 @@ function modifierDevoir()
                             <input type='submit' value='' name='done-checkbox' class='done-checkbox'>
                         </form>
                         <div class='firstColumn'>
-                            <h2 class='title'>" . $row["titre"] . "</h2>
+                            <h2 class='title'>" . $row["titre"] . "</h2> 
+                            <span class='groupe'>" . $row["groupe"] . "</span>
                             <p class='matiere'>" . $row["matiere"] . "</p>
                         </div>
                         <div class='secondColumn'>
@@ -506,12 +500,20 @@ function modifierDevoir()
                 <input name="ajoutCoefMatValue" type="number" class="coefLabel">
             </fieldset>
 
+            <label for="groupe">Groupe</label>
+            <select id="ajoutGroupe" name="ajoutGroupe">
+                <option selected value="Tous">Tous</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+            </select>
+
             <input type="submit" id="ajoutSubmit" name="ajoutSubmit" value="Ajouter">
         </form>
     </article>
     <?php
     if (isset($_POST['ajoutSubmit'])) {
-
         ajoutDevoir();
     }
     ?>
@@ -586,6 +588,15 @@ function modifierDevoir()
 
                 <input name="modifCoefMatier" type="number" class="coefLabel">
             </fieldset>
+
+            <label for="groupe">Groupe</label>
+            <select id="modifGroupe" name="modifGroupe">
+                <option selected value="Tous">Tous</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+            </select>
 
             <input type="hidden" name="modifHidden">
             <input name="modifSubmit" type="submit" value="Modifier">

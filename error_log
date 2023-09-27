@@ -16683,3 +16683,55 @@ Stack trace:
 #1 {main}
   thrown in /home/nlerond/public_html/MMIApp/index.php on line 418
 [27-Sep-2023 08:14:34 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nlerond/public_html/MMIApp/index.php:244) in /home/nlerond/public_html/MMIApp/index.php on line 93
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 298
+[27-Sep-2023 09:02:43 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:411
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(411): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 411
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 291
+[27-Sep-2023 09:48:06 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:404
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(404): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 404
+[27-Sep-2023 09:54:07 UTC] PHP Fatal error:  Uncaught Error: Object of class mysqli_result could not be converted to string in /home/nlerond/public_html/MMIApp/index.php:396
+Stack trace:
+#0 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 396
+[27-Sep-2023 09:54:52 UTC] PHP Warning:  Array to string conversion in /home/nlerond/public_html/MMIApp/index.php on line 396
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 291
+[27-Sep-2023 10:04:23 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:406
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(406): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 406
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Undefined array key "pseudo" in /home/nlerond/public_html/MMIApp/index.php on line 7
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 10
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 11
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 12
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nlerond/public_html/MMIApp/index.php on line 295
+[27-Sep-2023 10:07:22 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/nlerond/public_html/MMIApp/index.php:410
+Stack trace:
+#0 /home/nlerond/public_html/MMIApp/index.php(410): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/nlerond/public_html/MMIApp/index.php on line 410
+[27-Sep-2023 10:21:55 UTC] PHP Warning:  Undefined array key "ajoutGroupe" in /home/nlerond/public_html/MMIApp/index.php on line 114
+[27-Sep-2023 10:22:22 UTC] PHP Warning:  Undefined array key "ajoutGroupe" in /home/nlerond/public_html/MMIApp/index.php on line 114
+[27-Sep-2023 10:22:22 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nlerond/public_html/MMIApp/index.php:239) in /home/nlerond/public_html/MMIApp/index.php on line 217
+[27-Sep-2023 10:24:44 UTC] PHP Warning:  Undefined array key "ajoutGroupe" in /home/nlerond/public_html/MMIApp/index.php on line 114
+[27-Sep-2023 10:24:44 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nlerond/public_html/MMIApp/index.php:239) in /home/nlerond/public_html/MMIApp/index.php on line 217
+[27-Sep-2023 10:26:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nlerond/public_html/MMIApp/index.php:239) in /home/nlerond/public_html/MMIApp/index.php on line 217
+[27-Sep-2023 10:28:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nlerond/public_html/MMIApp/index.php:236) in /home/nlerond/public_html/MMIApp/index.php on line 217
