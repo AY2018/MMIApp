@@ -33,10 +33,33 @@ if ($_POST["inscriptionSubmit"]) {
                                     // Insertion des données dans la base de données
                                     $sql3 = "INSERT INTO `etudiants` (`pseudo`, `email`, `groupe`, `motDePasse`, `admin`) VALUES ('$pseudo', '$email', '$groupe', '$mdp', 0)";
                                     $result = mysqli_query($link, $sql3);
+
+                                    switch ($groupe) {
+                                        case "A1":
+                                            $groupeDemi = "A";
+                                            $groupeQuart = "1";
+                                            break;
+                                        case "A2":
+                                            $groupeDemi = "A";
+                                            $groupeQuart = "2";
+                                            break;
+                                        case "B1":
+                                            $groupeDemi = "B";
+                                            $groupeQuart = "1";
+                                            break;
+                                        case "B2":
+                                            $groupeDemi = "B";
+                                            $groupeQuart = "2";
+                                            break;
+                                    }
+
+
                                     $_SESSION['pseudo'] = $pseudo;
                                     $_SESSION['email'] = $email;
                                     $_SESSION['groupe'] = $groupe;
                                     $_SESSION['isConnected'] = true;
+                                    $_SESSION['groupeDemi'] = $groupeDemi;
+                                    $_SESSION['groupeQuart'] = $groupeQuart;
                                     if ($result) {
                                         header('Location: ../index.php');
                                     } else {
@@ -116,12 +139,34 @@ if ($_POST["inscriptionSubmit"]) {
                 $row = mysqli_fetch_assoc($result);
                 $hashedPassword = $row['motDePasse'];
 
+                switch ($row["groupe"]) {
+                    case "a1":
+                        $groupeDemi = "A";
+                        $groupeQuart = "1";
+                        break;
+                    case "a2":
+                        $groupeDemi = "A";
+                        $groupeQuart = "2";
+                        break;
+                    case "b1":
+                        $groupeDemi = "B";
+                        $groupeQuart = "1";
+                        break;
+                    case "b2":
+                        $groupeDemi = "B";
+                        $groupeQuart = "2";
+                        break;
+                }
+
+
                 if (password_verify($motDePasse, $hashedPassword)) {
                     // Mot de passe correct, connectez l'utilisateur
                     $_SESSION['pseudo'] = $row['pseudo'];
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['groupe'] = $row['groupe'];
                     $_SESSION['isConnected'] = true;
+                    $_SESSION['groupeDemi'] = $groupeDemi;
+                    $_SESSION['groupeQuart'] = $groupeQuart;
                     header('Location: ../index.php');
                 } else {
                     // Mot de passe incorrect

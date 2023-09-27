@@ -2695,3 +2695,128 @@ Stack trace:
 [27-Sep-2023 08:17:23 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
 [27-Sep-2023 08:17:23 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
 [27-Sep-2023 08:17:24 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:02:43 UTC] PHP Warning:  Undefined array key "connexionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 94
+[27-Sep-2023 09:02:47 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 09:02:47 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 09:02:47 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 09:02:47 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 09:02:47 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 09:02:47 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:28:01 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 09:28:01 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 09:28:01 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 09:28:01 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 09:28:01 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 09:28:01 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:28:01 UTC] PHP Warning:  Undefined array key "connexionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 94
+[27-Sep-2023 09:28:05 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 09:28:05 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 09:28:05 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 09:28:05 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 09:28:05 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 09:28:06 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:30:59 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 09:30:59 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 09:30:59 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 09:30:59 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 09:30:59 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 09:30:59 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:30:59 UTC] PHP Warning:  Undefined array key "connexionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 117
+[27-Sep-2023 09:32:10 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 09:32:10 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 09:32:10 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 09:32:10 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 09:32:10 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 09:32:10 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:32:10 UTC] PHP Warning:  Undefined array key "connexionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 117
+[27-Sep-2023 09:32:17 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 09:32:17 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 09:32:17 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 09:32:17 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 09:32:17 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 09:32:17 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:48:06 UTC] PHP Warning:  Undefined array key "connexionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 117
+[27-Sep-2023 09:48:10 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 09:48:10 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 09:48:10 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 09:48:10 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 09:48:10 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 09:48:10 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 09:48:10 UTC] PHP Warning:  Undefined variable $groupeDemi in /home/nlerond/public_html/MMIApp/php/login.php on line 168
+[27-Sep-2023 09:48:10 UTC] PHP Warning:  Undefined variable $groupeQuart in /home/nlerond/public_html/MMIApp/php/login.php on line 169
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 10:04:23 UTC] PHP Warning:  Undefined array key "connexionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 117
+[27-Sep-2023 10:04:27 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 10:04:27 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 10:04:27 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 10:04:27 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 10:04:27 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 10:04:27 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 10:04:27 UTC] PHP Warning:  Undefined variable $groupeDemi in /home/nlerond/public_html/MMIApp/php/login.php on line 168
+[27-Sep-2023 10:04:27 UTC] PHP Warning:  Undefined variable $groupeQuart in /home/nlerond/public_html/MMIApp/php/login.php on line 169
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 10:07:22 UTC] PHP Warning:  Undefined array key "connexionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 117
+[27-Sep-2023 10:07:28 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 10:07:28 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 10:07:28 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 10:07:28 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 10:07:28 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 10:07:29 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 10:07:29 UTC] PHP Warning:  Undefined variable $groupeDemi in /home/nlerond/public_html/MMIApp/php/login.php on line 168
+[27-Sep-2023 10:07:29 UTC] PHP Warning:  Undefined variable $groupeQuart in /home/nlerond/public_html/MMIApp/php/login.php on line 169
+[27-Sep-2023 10:10:07 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 10:10:07 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 10:10:07 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 10:10:07 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 10:10:07 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 10:10:07 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 10:10:07 UTC] PHP Warning:  Undefined array key "connexionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 117
+[27-Sep-2023 10:10:46 UTC] PHP Warning:  Undefined variable $groupeDemi in /home/nlerond/public_html/MMIApp/php/login.php on line 61
+[27-Sep-2023 10:10:46 UTC] PHP Warning:  Undefined variable $groupeQuart in /home/nlerond/public_html/MMIApp/php/login.php on line 62
+[27-Sep-2023 10:11:44 UTC] PHP Warning:  Undefined array key "inscriptionPseudo" in /home/nlerond/public_html/MMIApp/php/login.php on line 9
+[27-Sep-2023 10:11:44 UTC] PHP Warning:  Undefined array key "inscriptionEmail" in /home/nlerond/public_html/MMIApp/php/login.php on line 10
+[27-Sep-2023 10:11:44 UTC] PHP Warning:  Undefined array key "inscriptionGroupe" in /home/nlerond/public_html/MMIApp/php/login.php on line 11
+[27-Sep-2023 10:11:44 UTC] PHP Warning:  Undefined array key "inscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 12
+[27-Sep-2023 10:11:44 UTC] PHP Warning:  Undefined array key "confirmInscriptionMDP" in /home/nlerond/public_html/MMIApp/php/login.php on line 13
+[27-Sep-2023 10:11:44 UTC] PHP Warning:  Undefined array key "inscriptionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 17
+[27-Sep-2023 10:11:44 UTC] PHP Warning:  Undefined array key "connexionSubmit" in /home/nlerond/public_html/MMIApp/php/login.php on line 117
+[27-Sep-2023 10:13:44 UTC] PHP Warning:  Undefined variable $groupeDemi in /home/nlerond/public_html/MMIApp/php/login.php on line 61
+[27-Sep-2023 10:13:44 UTC] PHP Warning:  Undefined variable $groupeQuart in /home/nlerond/public_html/MMIApp/php/login.php on line 62
+[27-Sep-2023 10:38:28 UTC] PHP Fatal error:  Uncaught Error: Array callback must have exactly two elements in /home/nlerond/public_html/MMIApp/php/id.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/nlerond/public_html/MMIApp/php/id.php on line 30
+[27-Sep-2023 10:38:38 UTC] PHP Fatal error:  Uncaught Error: Array callback must have exactly two elements in /home/nlerond/public_html/MMIApp/php/id.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/nlerond/public_html/MMIApp/php/id.php on line 30
+[27-Sep-2023 10:39:37 UTC] PHP Fatal error:  Uncaught Error: Array callback must have exactly two elements in /home/nlerond/public_html/MMIApp/php/id.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/nlerond/public_html/MMIApp/php/id.php on line 30
+[27-Sep-2023 10:39:42 UTC] PHP Fatal error:  Uncaught Error: Array callback must have exactly two elements in /home/nlerond/public_html/MMIApp/php/id.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/nlerond/public_html/MMIApp/php/id.php on line 30
