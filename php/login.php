@@ -140,19 +140,19 @@ if ($_POST["inscriptionSubmit"]) {
                 $hashedPassword = $row['motDePasse'];
 
                 switch ($row["groupe"]) {
-                    case "a1":
+                    case "A1":
                         $groupeDemi = "A";
                         $groupeQuart = "1";
                         break;
-                    case "a2":
+                    case "A2":
                         $groupeDemi = "A";
                         $groupeQuart = "2";
                         break;
-                    case "b1":
+                    case "B1":
                         $groupeDemi = "B";
                         $groupeQuart = "1";
                         break;
-                    case "b2":
+                    case "B2":
                         $groupeDemi = "B";
                         $groupeQuart = "2";
                         break;
@@ -245,22 +245,22 @@ if ($_POST["inscriptionSubmit"]) {
             <fieldset>
                 <div>
                     <i class="fa-solid fa-user"></i>
-                    <input required minlength="3" id="pseudoInput" class="pseudoInput" name="inscriptionPseudo" type="text" placeholder="Pseudo">
+                    <input required minlength="3" id="pseudoInput" class="pseudoInput" name="inscriptionPseudo" autocomplete="name" type="text" placeholder="Pseudo">
                 </div>
 
                 <div>
                     <i class="fa-solid fa-envelope"></i>
-                    <input required name="inscriptionEmail" type="email" placeholder="Email">
+                    <input required name="inscriptionEmail" autocomplete="email" type="email" placeholder="Email">
                 </div>
 
                 <div>
                     <i class="fa-solid fa-book-bookmark"></i>
                     <select name="inscriptionGroupe" id="">
                         <option value="none" disabled selected>Groupe</option>
-                        <option value="a1">A1</option>
-                        <option value="a2">A2</option>
-                        <option value="b1">B1</option>
-                        <option value="b2">B2</option>
+                        <option value="A1">A1</option>
+                        <option value="A2">A2</option>
+                        <option value="B1">B1</option>
+                        <option value="B2">B2</option>
                     </select>
                 </div>
 

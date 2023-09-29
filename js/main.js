@@ -41,6 +41,7 @@ document.getElementById('currentDate').textContent = formattedDate;
 // Get the toggle button and the elements with class 'done'
 const toggleButton = document.getElementById('toggle-btn');
 const doneElements = document.querySelectorAll('.done');
+const notDoneElements = document.querySelectorAll('.notDone');
 
 // Add a click event listener to the toggle button
 toggleButton.addEventListener('click', () => {
@@ -50,8 +51,14 @@ toggleButton.addEventListener('click', () => {
         if (element.style.display === 'none' || element.style.display === '') {
             element.style.display = 'flex';
             element.style.flexDirection = 'row';
+            notDoneElements.forEach(element => {
+                element.style.display = 'none';
+            });
         } else {
             element.style.display = 'none';
+            notDoneElements.forEach(element => {
+                element.style.display = 'flex';
+            });
         }
     });
 });
@@ -74,18 +81,10 @@ const infoArticle = document.getElementById("infoDevoir");
 
 function closeInfo() {
     infoArticle.style.display = "none";
-
-    // Supprimez le cookie "id" en le définissant avec une date d'expiration passée
-    // document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    // location.reload();
 }
 
 function openInfo() {
     infoArticle.style.display = "flex";
-    // var currentDate = new Date();
-    // currentDate.setTime(currentDate.getTime() + (24 * 60 * 60 * 1000));
-    // var expires = "expires=" + currentDate.toUTCString();
-    // document.cookie = "id=" + devoirID + "; " + expires + "; path=/";
 }
 
 
@@ -111,5 +110,4 @@ function openDlt() {
 
 function closeDlt() {
     deleteArticle.style.display = "none";
-    console.log('lol');
 }
