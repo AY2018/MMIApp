@@ -17,11 +17,11 @@ if (isset($_POST['devoirID'])) {
         $rowDevoir = mysqli_fetch_assoc($resDevoir);
         $rowCoeff = mysqli_fetch_assoc($resCoeff);
 
-        $titre = isset($rowDevoir['titre']) ? $rowDevoir['titre'] : "Aucune information sur le devoir";
+        $titre = isset($rowDevoir['titre']) ? htmlspecialchars_decode($rowDevoir['titre']) : "Aucune information sur le devoir";
         $matiere = isset($rowDevoir['matiere']) ? $rowDevoir['matiere'] : "Aucune information sur le devoir";
         $date = isset($rowDevoir['date']) ? $rowDevoir['date'] : "Aucune information sur le devoir";
 
-        $description = isset($rowDevoir['description']) ? $rowDevoir['description'] : "Aucune information sur le devoir";
+        $description = isset($rowDevoir['description']) ? htmlspecialchars_decode($rowDevoir['description']) : "Aucune information sur le devoir";
 
         $type = isset($rowDevoir['type']) ? $rowDevoir['type'] : "Aucune information sur le devoir";
         $coefDevoir = isset($rowDevoir['coefDevoir']) ? $rowDevoir['coefDevoir'] : "Aucune information sur le devoir";

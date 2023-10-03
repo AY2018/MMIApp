@@ -212,6 +212,10 @@ suppressionAutomatiqueDevoirs();
                             $li = "<li id='liDevoir' class='notDone'>";
                         }
 
+                        $titre = htmlspecialchars_decode($row["titre"]);
+                        $groupe = htmlspecialchars_decode($row["groupe"]);
+                        $matiere = htmlspecialchars_decode($row["matiere"]);
+
                         echo $li . "
                         <form action='php/update_devoir.php' method='post'> 
                             <input type='hidden' name='devoirID' value='" . $row['idDevoir'] . "'>
@@ -219,9 +223,9 @@ suppressionAutomatiqueDevoirs();
                             <input type='submit' value='' name='done-checkbox' class='done-checkbox'>
                         </form>
                         <div class='firstColumn'>
-                            <h2 class='title'>" . $row["titre"] . "</h2> 
-                            <span class='groupe'>" . $row["groupe"] . "</span>
-                            <p class='matiere'>" . $row["matiere"] . "</p>
+                            <h2 class='title'>" . $titre . "</h2> 
+                            <span class='groupe'>" . $groupe . "</span>
+                            <p class='matiere'>" . $matiere . "</p>
                         </div>
                         <div class='secondColumn'>
                             <p class='date'>" . $date . "</p>

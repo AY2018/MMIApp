@@ -6,11 +6,11 @@ $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nl
 // Partie gestion des données du formulaire d'inscription
 
 // Récupération des variables nécessaires à l'inscription
-$pseudo = mysqli_real_escape_string($link, $_POST['inscriptionPseudo']);
-$email = mysqli_real_escape_string($link, $_POST['inscriptionEmail']);
-$groupe = mysqli_real_escape_string($link, $_POST['inscriptionGroupe']);
-$motDePasse = mysqli_real_escape_string($link, $_POST['inscriptionMDP']);
-$confirmMotDePasse = mysqli_real_escape_string($link, $_POST['confirmInscriptionMDP']);
+$pseudo = mysqli_real_escape_string($link, htmlspecialchars($_POST['inscriptionPseudo']));
+$email = mysqli_real_escape_string($link, htmlspecialchars($_POST['inscriptionEmail']));
+$groupe = mysqli_real_escape_string($link, htmlspecialchars($_POST['inscriptionGroupe']));
+$motDePasse = mysqli_real_escape_string($link, htmlspecialchars($_POST['inscriptionMDP']));
+$confirmMotDePasse = mysqli_real_escape_string($link, htmlspecialchars($_POST['confirmInscriptionMDP']));
 // hash du mot de passe pour la sécurité
 $mdp = password_hash($motDePasse, PASSWORD_DEFAULT);
 

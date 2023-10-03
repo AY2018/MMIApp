@@ -5,15 +5,15 @@ function ajoutDevoir()
     $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
 
     // Utilisation de requêtes préparées pour éviter les injections SQL
-    $title = mysqli_real_escape_string($link, $_POST['ajoutTitle']);
-    $matiere = mysqli_real_escape_string($link, $_POST['ajoutMatiere']);
-    $date = mysqli_real_escape_string($link, $_POST['ajoutDate']);
-    $type = mysqli_real_escape_string($link, $_POST['ajoutType']);
-    $description = isset($_POST['ajoutDescription']) ? "'" . mysqli_real_escape_string($link, $_POST['ajoutDescription']) . "'" : 'NULL';
-    $coef = isset($_POST['ajoutCoef']) && $_POST['ajoutCoef'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoef']) . "'" : 'NULL';
-    $coefMat = isset($_POST['ajoutCoefMat']) && $_POST['ajoutCoefMat'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoefMat']) . "'" : 'NULL';
-    $coefMatValue = isset($_POST['ajoutCoefMatValue']) && $_POST['ajoutCoefMatValue'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['ajoutCoefMatValue']) . "'" : 'NULL';
-    $groupe = mysqli_real_escape_string($link, $_POST['ajoutGroupe']);
+    $title = mysqli_real_escape_string($link, htmlspecialchars($_POST['ajoutTitle']));
+    $matiere = mysqli_real_escape_string($link, htmlspecialchars($_POST['ajoutMatiere']));
+    $date = mysqli_real_escape_string($link, htmlspecialchars($_POST['ajoutDate']));
+    $type = mysqli_real_escape_string($link, htmlspecialchars($_POST['ajoutType']));
+    $description = isset($_POST['ajoutDescription']) ? "'" . mysqli_real_escape_string($link, htmlspecialchars($_POST['ajoutDescription'])) . "'" : 'NULL';
+    $coef = isset($_POST['ajoutCoef']) && $_POST['ajoutCoef'] !== '' ? "'" . mysqli_real_escape_string($link, htmlspecialchars($_POST['ajoutCoef'])) . "'" : 'NULL';
+    $coefMat = isset($_POST['ajoutCoefMat']) && $_POST['ajoutCoefMat'] !== '' ? "'" . mysqli_real_escape_string($link, htmlspecialchars($_POST['ajoutCoefMat'])) . "'" : 'NULL';
+    $coefMatValue = isset($_POST['ajoutCoefMatValue']) && $_POST['ajoutCoefMatValue'] !== '' ? "'" . mysqli_real_escape_string($link, htmlspecialchars($_POST['ajoutCoefMatValue'])) . "'" : 'NULL';
+    $groupe = mysqli_real_escape_string($link, htmlspecialchars($_POST['ajoutGroupe']));
 
     $CheckInfos = "SELECT * FROM `devoirs` WHERE `titre` = '$title' AND `matiere` = '$matiere'";
     $CheckInfosQuery = mysqli_query($link, $CheckInfos);
@@ -88,16 +88,16 @@ function modifierDevoir()
     $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
 
     // Utilisation de requêtes préparées pour éviter les injections SQL
-    $title = mysqli_real_escape_string($link, $_POST['modifTitle']);
-    $matiere = mysqli_real_escape_string($link, $_POST['modifMatiere']);
-    $date = mysqli_real_escape_string($link, $_POST['modifDate']);
-    $type = mysqli_real_escape_string($link, $_POST['modifType']);
-    $description = isset($_POST['modifDescription']) ? mysqli_real_escape_string($link, $_POST['modifDescription']) : 'NULL';
-    $coef = isset($_POST['modifCoef']) && $_POST['modifCoef'] !== '' ? (int)$_POST['modifCoef'] : 'NULL';
-    $modifMat = isset($_POST['modifMat']) && $_POST['modifMat'] !== '' ? mysqli_real_escape_string($link, $_POST['modifMat']) : 'NULL';
-    $modifCoefMatier = isset($_POST['modifCoefMatier']) && $_POST['modifCoefMatier'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['modifCoefMatier']) . "'" : 'NULL';
-    $idDevoir = isset($_POST['modifHidden']) && $_POST['modifHidden'] !== '' ? "'" . mysqli_real_escape_string($link, $_POST['modifHidden']) . "'" : 'NULL';
-    $groupe = mysqli_real_escape_string($link, $_POST['modifGroupe']);
+    $title = mysqli_real_escape_string($link, htmlspecialchars($_POST['modifTitle']));
+    $matiere = mysqli_real_escape_string($link, htmlspecialchars($_POST['modifMatiere']));
+    $date = mysqli_real_escape_string($link, htmlspecialchars($_POST['modifDate']));
+    $type = mysqli_real_escape_string($link, htmlspecialchars($_POST['modifType']));
+    $description = isset($_POST['modifDescription']) ? mysqli_real_escape_string($link, htmlspecialchars($_POST['modifDescription'])) : 'NULL';
+    $coef = isset($_POST['modifCoef']) && $_POST['modifCoef'] !== '' ? htmlspecialchars((int)$_POST['modifCoef']) : 'NULL';
+    $modifMat = isset($_POST['modifMat']) && $_POST['modifMat'] !== '' ? mysqli_real_escape_string($link, htmlspecialchars($_POST['modifMat'])) : 'NULL';
+    $modifCoefMatier = isset($_POST['modifCoefMatier']) && $_POST['modifCoefMatier'] !== '' ? "'" . mysqli_real_escape_string($link, htmlspecialchars($_POST['modifCoefMatier'])) . "'" : 'NULL';
+    $idDevoir = isset($_POST['modifHidden']) && $_POST['modifHidden'] !== '' ? "'" . mysqli_real_escape_string($link, htmlspecialchars($_POST['modifHidden'])) . "'" : 'NULL';
+    $groupe = mysqli_real_escape_string($link, htmlspecialchars($_POST['modifGroupe']));
 
     if ($idDevoir != 'NULL') {
         $sqlUpdateDevoir = "UPDATE `devoirs` SET `titre` = '$title', `matiere` = '$matiere', `date` = '$date', `description` = '$description', `type` = '$type', `coefDevoir` = $coef, `groupe` = '$groupe' WHERE `devoirs`.`idDevoir` = $idDevoir";
