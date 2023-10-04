@@ -233,7 +233,7 @@ if ($_POST["inscriptionSubmit"]) {
 <body>
     <header>
         <figure>
-            <img src="../img/Group3.png" alt="logo de l'application">
+            <img src="../img/logo_mmi.svg" alt="logo de l'application">
         </figure>
     </header>
 

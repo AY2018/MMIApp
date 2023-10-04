@@ -56,7 +56,7 @@ suppressionAutomatiqueDevoirs();
 
     <header>
         <figure>
-            <img src="./img/Group3.png" alt="">
+            <img src="./img/logo_mmi.svg" alt="">
         </figure>
 
         <a href="./php/deconnexion.php"><i class="fa-solid fa-right-from-bracket"></i></a>
@@ -317,11 +317,55 @@ suppressionAutomatiqueDevoirs();
 
             <label for="groupe">Groupe</label>
             <select id="ajoutGroupe" name="ajoutGroupe">
-                <option selected value="Tous">Tous</option>
+
+                <?php
+
+                $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
+                $sqlCheckPseudo = "SELECT * FROM `etudiants` WHERE `pseudo` = '" . $_SESSION['pseudo'] . "'";
+                $resultCheckPseudo = mysqli_query($link, $sqlCheckPseudo);
+                $rowCheckPseudo = mysqli_fetch_assoc($resultCheckPseudo);
+                $groupe = $rowCheckPseudo["groupe"];
+                if ($rowCheckPseudo["admin"] == 0 || $rowCheckPseudo["admin"] == 1) {
+                    switch ($groupe) {
+                        case "A1":
+                            echo '<option selected value="Tous">Tous</option>
+                            <option value="A">A</option>
+                            <option value="A1">A1</option>';
+                            break;
+                        case "A2":
+                            echo '<option selected value="Tous">Tous</option>
+                            <option value="A">A</option>
+                            <option value="A2">A2</option>';
+                            break;
+                        case "B1":
+                            echo '<option selected value="Tous">Tous</option>
+                            <option value="B">B</option>
+                            <option value="A1">B1</option>';
+                            break;
+                        default:
+                            echo '<option selected value="Tous">Tous</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>';
+                    }
+                } else {
+                    echo '<option selected value="Tous">Tous</option>
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="A1">A1</option>
-                <option value="A2">A2</option>
+                <option value="A2">A2</option>';
+                }
+
+
+                ?>
+
+
+                <!-- <option selected value="Tous">Tous</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="A1">A1</option>
+                <option value="A2">A2</option> -->
             </select>
 
             <input type="submit" id="ajoutSubmit" name="ajoutSubmit" value="Ajouter">
@@ -412,11 +456,47 @@ suppressionAutomatiqueDevoirs();
 
             <label for="groupe">Groupe</label>
             <select id="modifGroupe" name="modifGroupe">
-                <option selected value="Tous">Tous</option>
+                <?php
+
+                $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
+                $sqlCheckPseudo = "SELECT * FROM `etudiants` WHERE `pseudo` = '" . $_SESSION['pseudo'] . "'";
+                $resultCheckPseudo = mysqli_query($link, $sqlCheckPseudo);
+                $rowCheckPseudo = mysqli_fetch_assoc($resultCheckPseudo);
+                $groupe = $rowCheckPseudo["groupe"];
+                if ($rowCheckPseudo["admin"] == 0 || $rowCheckPseudo["admin"] == 1) {
+                    switch ($groupe) {
+                        case "A1":
+                            echo '<option selected value="Tous">Tous</option>
+                            <option value="A">A</option>
+                            <option value="A1">A1</option>';
+                            break;
+                        case "A2":
+                            echo '<option selected value="Tous">Tous</option>
+                            <option value="A">A</option>
+                            <option value="A2">A2</option>';
+                            break;
+                        case "B1":
+                            echo '<option selected value="Tous">Tous</option>
+                            <option value="B">B</option>
+                            <option value="A1">B1</option>';
+                            break;
+                        default:
+                            echo '<option selected value="Tous">Tous</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>';
+                    }
+                } else {
+                    echo '<option selected value="Tous">Tous</option>
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="A1">A1</option>
-                <option value="A2">A2</option>
+                <option value="A2">A2</option>';
+                }
+
+
+                ?>
             </select>
 
             <input type="hidden" name="modifHidden">
@@ -432,7 +512,11 @@ suppressionAutomatiqueDevoirs();
     <article class="infoDevoir" id="infoDevoir">
         <section>
             <?php
-            if ($privilege == "admin" || $privilege == "owner") {
+            $link = mysqli_connect("localhost", "nlerond_utilisateur", "utilisateur123", "nlerond_mmiapp");
+            $sql = "SELECT * FROM `etudiants` WHERE `pseudo` = '" . $_SESSION['pseudo'] . "'";
+            $result = mysqli_query($link, $sql);
+            $row = mysqli_fetch_assoc($result);
+            if ($row["admin"] == 1 || $row["admin"] == 3) {
                 echo '<i class="fa-solid fa-pen-to-square btnModifDev" onclick="openModif()"></i>
                     <i id="trash-icon" class="fa-solid fa-trash trash-icon" style="color: #d71414;left: 20%; position: absolute" onclick="openDlt()"></i>';
             }
